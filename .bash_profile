@@ -12,7 +12,10 @@ export PATH="/usr/local/opt/sqlite/bin:$PATH"
 export CLICOLOR=1
 export LSCOLORS=ExFxDxCxegedabagacad
 
+source /usr/local/etc/profile.d/bash_completion.sh
 source /usr/local/etc/bash_completion.d/az
+# git bash completion
+# https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash
 
 #alias vmrun=/Applications/VMware\ Fusion.app/Contents/Library/vmrun
 
@@ -24,7 +27,6 @@ export PATH=$PATH:/opt/metasploit-framework/bin
 
 export PATH="/usr/local/sbin:$PATH"
 
-. /usr/local/etc/profile.d/bash_completion.sh
 
 alias ccat='ccat --bg=dark'
 alias c='cat'
