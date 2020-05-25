@@ -48,3 +48,5 @@ source ~/.iterm2_shell_integration.zsh
 
 bindkey \^U backward-kill-line
 
+# brew
+export PATH="/usr/local/sbin:$PATH"

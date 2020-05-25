@@ -50,10 +50,14 @@ brew install helm
 brew install kubernetes-cli
 brew install skopeo
 
+# Shell related
+brew install zsh-syntax-highlighting
+
 # Casks
 brew cask install "iterm2"
 brew cask install "visual-studio-code"
 brew cask install "vagrant"
+brew cask install "vagrant-vmware-utility"
 brew cask install "powershell"
 
 brew cask install "slack"
