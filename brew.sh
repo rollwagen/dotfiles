@@ -52,6 +52,10 @@ brew install skopeo
 
 # Shell related
 brew install zsh-syntax-highlighting
+brew install fzf
+#TODO shell completions + include in bashrc/zshrc  
+# $(brew --prefix)/opt/fzf/install
+brew install fd
 
 # Casks
 brew cask install "iterm2"
