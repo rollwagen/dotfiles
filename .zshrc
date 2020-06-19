@@ -1,4 +1,8 @@
+
+
+#
 # Lines configured by zsh-newuser-install
+#
 HISTFILE=~/.histfile
 HISTSIZE=1000
 SAVEHIST=2000
@@ -6,12 +10,13 @@ setopt nomatch
 unsetopt autocd beep extendedglob notify
 bindkey -e
 # End of lines configured by zsh-newuser-install
+
 # The following lines were added by compinstall
 zstyle :compinstall filename '/Users/rollwagen/.zshrc'
-
 #autoload -Uz compinit
 #compinit
 # End of lines added by compinstall
+
 
 #
 # brew zsh-completion
@@ -34,7 +39,11 @@ zstyle :compinstall filename '/Users/rollwagen/.zshrc'
 
 #To activate the syntax highlighting, add the following at the end of your .zshrc:
 #Ubuntu: /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+ZSH_HIGHLIGHT_HIGHLIGHTERS_FILE=/usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+if [ -f "$ZSH_HIGHLIGHT_HIGHLIGHTERS_FILE" ]; then
+    source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+fi
+
 
 # If you receive "highlighters directory not found" error message,
 # you may need to add the following to your .zshenv:
@@ -44,9 +53,25 @@ source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 [[ /usr/local/bin/kubectl ]] && source <(kubectl completion zsh)
 
 # iTerm2 shell integration
-source ~/.iterm2_shell_integration.zsh
+[[-f ~/.iterm2_shell_integration.zsh]] && source ~/.iterm2_shell_integration.zsh
 
+# Ctrl-U
 bindkey \^U backward-kill-line
 
-# brew
+# brew path addition
 export PATH="/usr/local/sbin:$PATH"
+
+# Fuzzy finder config / completion
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# Alt-c for fuzzy finder
+bindkey "ç" fzf-cd-widget
+
+# Azure auto completion
+autoload bashcompinit && bashcompinit
+source /usr/local/etc/bash_completion.d/az
+
+export FZF_DEFAULT_COMMAND='fd --type f --exclude "/Library/" --exclude "/Music/"'
+export FZF_CTRL_T_COMMAND='fd --type f --exclude "Library/" --exclude "Music/"'
+export FZF_ALT_C_COMMAND='fd --type d --exclude "Library/" --exclude "Music/"'
+

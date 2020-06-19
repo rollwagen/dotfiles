@@ -1,22 +1,28 @@
 #!/usr/bin/env bash
 
-function sync_dotfiles() {
-	rsync	--exclude ".git/" \
-			--exclude ".gitignore" \
-			--exclude "synch.sh" \
-			--exclude "README.md" \
-			-avh --no-perms . ~;
-	
-	source ~/.bash_profile;
+cd "$(dirname "$0")" || exit 5
+git pull
+
+function doSynch() {
+	rsync --exclude ".git/" \
+		--exclude ".gitconfig" \
+		--exclude ".gitignore" \
+		--exclude "synch.sh" \
+		--exclude "README.md" \
+		--exclude "brew.sh" \
+		--exclude "macos.sh" \
+		-avh . ~
 }
 
-if [ "$1" == "--yes" -o "$1" == "-y" ]; then
-	sync_dotfiles;
+if [ "$1" == "--force" -o "$1" == "-f" ]; then
+  doSynch
 else
-	read -p "Synch [and potentially overwrite] dotfiles home folder? (y/n) " -n 1;
-	echo "";
-	if [[ $REPLY =~ ^[Yy]$ ]]; then
-		sync_dotfiles;
-	fi;
-fi;
-unset sync_dotfiles;
+  read -p "This might overwrite existing files in your homedir. Are you sure? (y/n) " -n 1
+  echo
+  if [[ $REPLY =~ ^[Yy]$ ]]; then
+    doSynch
+  fi
+fi
+
+unset doSynch
+source ~/.bash_profile
