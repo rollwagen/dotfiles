@@ -85,7 +85,7 @@ brew cask install "firefox"
 brew cask install "google-chrome"
 brew cask install "calibre"
 
-brew cask install "idafree"
+#brew cask install "idafree"
 brew cask install "metasploit"
 
 brew cask install "dropbox"
