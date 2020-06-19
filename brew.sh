@@ -39,7 +39,6 @@ brew install snort
 brew install suricata
 brew install telnet
 
-
 brew install openvpn
 
 # Install other useful binaries.
@@ -69,6 +68,8 @@ brew install zsh-completion
 # export FZF_CTRL_T_COMMAND='fd --type f --exclude "Library/" --exclude "Music/"'
 # export FZF_ALT_C_COMMAND='fd --type d --exclude "Library/" --exclude "Music/"'
 
+# Public Clouds
+brew install azure-cli
 
 
 # Casks
