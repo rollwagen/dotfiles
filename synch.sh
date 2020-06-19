@@ -25,4 +25,3 @@ else
 fi
 
 unset doSynch
-source ~/.bash_profile
