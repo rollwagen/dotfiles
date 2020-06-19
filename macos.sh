@@ -141,3 +141,20 @@ sudo pmset -a powernap 0
 
 # 4.1 Disable Bonjour advertising service (Scored)
 sudo defaults write /Library/Preferences/com.apple.mDNSResponder.plist NoMulticastAdvertisements -bool true
+
+# 4.2 Enable "Show Wi-Fi status in menu bar" (Scored)
+open /System/Library/CoreServices/Menu\ Extras/AirPort.menu
+
+# 4.4 Ensure http server is not running (Scored)
+sudo apachectl stop 2>/dev/null
+
+# 4.5 Ensure nfs server is not running (Scored)
+sudo nfsd disable 2>/dev/null
+
+# 5.1.1 Secure Home Folders (Scored) (orig:  sudo chmod -R og-rwx /Users/<username>)
+sudo chmod  og-rw /Users/[a-z]*
+
+# 5.8 Disable automatic login (Scored)
+
+sudo defaults delete /Library/Preferences/com.apple.loginwindow autoLoginUser
+
