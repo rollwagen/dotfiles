@@ -69,7 +69,7 @@ bindkey "ç" fzf-cd-widget
 
 # Azure auto completion
 autoload bashcompinit && bashcompinit
-source /usr/local/etc/bash_completion.d/az
+[ -f /usr/local/etc/bash_completion.d/az ] && source /usr/local/etc/bash_completion.d/az
 
 export FZF_DEFAULT_COMMAND='fd --type f --exclude "/Library/" --exclude "/Music/"'
 export FZF_CTRL_T_COMMAND='fd --type f --exclude "Library/" --exclude "Music/"'
