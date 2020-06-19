@@ -16,6 +16,7 @@ source /usr/local/etc/profile.d/bash_completion.sh
 source /usr/local/etc/bash_completion.d/az
 # git bash completion
 # https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash
+complete -C /usr/local/bin/terraform terraform
 
 #alias vmrun=/Applications/VMware\ Fusion.app/Contents/Library/vmrun
 
@@ -30,7 +31,7 @@ export PATH="/usr/local/sbin:$PATH"
 
 alias ccat='ccat --bg=dark'
 alias c='cat'
-#alias cat='ccat --bg=dark'
+alias grep='grep --color=auto'
 
 alias ovftool='/Applications/VMware\ Fusion.app/Contents/Library/VMware\ OVF\ Tool/ovftool'
 alias vmware-vdiskmanager='/Applications/VMware\ Fusion.app/Contents/Library/vmware-vdiskmanager'
@@ -46,3 +47,5 @@ vdc() {
 # export -f vdc
 # find . -name disk.vmdk -exec /bin/bash -c 'vdc "$0"' {} \;
 
+alias zsh='/usr/local/bin/zsh'
+# export PATH="/usr/local/opt/openjdk@11/bin:$PATH

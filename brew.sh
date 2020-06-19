@@ -1,10 +1,17 @@
 #!/usr/bin/env bash
 
-# Update to ensure using latest formulae.
-brew update
 
-# Upgrade the already-installed formulae.
-brew upgrade
+which -s brew
+if [[ $? != 0 ]] ; then
+    # Install Homebrew
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+else
+    # Update to ensure using latest formulae.
+    brew update
+    # Upgrade the already-installed formulae.
+    brew upgrade
+fi
+
 
 # Install an up-to-date version of Bash
 # and Bash close tools.
@@ -16,6 +23,7 @@ brew install dos2unix
 brew install jq
 brew install htop
 brew install pstree
+brew install openssl
 brew install curl-openssl
 brew install wget
 
@@ -92,3 +100,4 @@ brew cask install "tidal"
 
 # Remove outdated versions from the cellar.
 brew cleanup
+brew doctor
