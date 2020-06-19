@@ -46,7 +46,7 @@ sudo pkill -HUP socketfilterfw
 #
 # DNS - Blacklist DNS list
 #
-sudo curl "https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts" >>  /etc/hosts
+curl "https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts" | sudo tee -a /etc/hosts
 
 # 
 # Captive Portals - disable assistant
