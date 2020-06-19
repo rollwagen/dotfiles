@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 cd "$(dirname "$0")" || exit 5
-git pull
+#git pull
 
 function doSynch() {
 	rsync --exclude ".git/" \
