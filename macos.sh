@@ -110,3 +110,34 @@ defaults write com.apple.Safari "com.apple.Safari.ContentPageGroupIdentifier.Web
 # echo "Preventing Time Machine from prompting to use new hard drives as backup volume"
 defaults write com.apple.TimeMachine DoNotOfferNewDisksForBackup -bool true
 
+# C I S
+
+#2.1.3 Show Bluetooth status in menu bar (Scored)
+# defaults read com.apple.systemuiserver menuExtras | grep Bluetooth.menu
+
+# Disable Remote Apple Events (Scored)
+sudo systemsetup -setremoteappleevents off
+
+# 2.4.5 Disable Remote Login (Scored)
+sudo systemsetup -setremotelogin off
+
+# 2.4.8 Disable File Sharing (Scored)
+sudo launchctl unload -w /System/Library/LaunchDaemons/com.apple.AppleFileServer.plist
+sudo launchctl unload -w /System/Library/LaunchDaemons/com.apple.smbd.plist
+
+# 2.5.2 Enable Gatekeeper (Scored)
+sudo spctl --master-enable
+
+# 2.5.3 - 2.5.4 Firewall...see above
+
+# 2.5.6 Enable Location Services (Not Scored) - Disable !
+sudo launchctl unload /System/Library/LaunchDaemons/com.apple.locationd.plist
+
+# 2.12 Disable "Wake for network access" and "Power Nap" (Scored)
+sudo pmset -a womp 0
+sudo pmset -a powernap 0
+
+# 3.6 Ensure Firewall is configured to log (Scored)...see above
+
+# 4.1 Disable Bonjour advertising service (Scored)
+sudo defaults write /Library/Preferences/com.apple.mDNSResponder.plist NoMulticastAdvertisements -bool true
