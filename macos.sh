@@ -46,7 +46,7 @@ sudo pkill -HUP socketfilterfw
 #
 # DNS - Blacklist DNS list
 #
-curl "https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts" | sudo tee -a /etc/hosts
+sudo curl "https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts" >>  /etc/hosts
 
 # 
 # Captive Portals - disable assistant
@@ -122,8 +122,8 @@ sudo systemsetup -setremoteappleevents off
 sudo systemsetup -setremotelogin off
 
 # 2.4.8 Disable File Sharing (Scored)
-sudo launchctl unload -w /System/Library/LaunchDaemons/com.apple.AppleFileServer.plist
-sudo launchctl unload -w /System/Library/LaunchDaemons/com.apple.smbd.plist
+sudo launchctl unload -w /System/Library/LaunchDaemons/com.apple.AppleFileServer.plist 2>/dev/null
+sudo launchctl unload -w /System/Library/LaunchDaemons/com.apple.smbd.plist 2>/dev/null
 
 # 2.5.2 Enable Gatekeeper (Scored)
 sudo spctl --master-enable
