@@ -5,7 +5,6 @@ cd "$(dirname "$0")" || exit 5
 
 function doSynch() {
 	rsync --exclude ".git/" \
-		--exclude ".gitconfig" \
 		--exclude ".gitignore" \
 		--exclude "synch.sh" \
 		--exclude "README.md" \
