@@ -180,6 +180,11 @@ defaults write ~/Library/Preferences/com.apple.assistant.support.plist "Assistan
 
 # Disable lookup suggestions
 defaults write ~/Library/Preferences/com.apple/lookup.shared.plist LookupSuggestionsDisabled -int 1
-
-
+defaults write com.apple.spotlight orderedItems -array \
+        '{"enabled" = 0;"name" = "MENU_DEFINITION";}' \
+        '{"enabled" = 0;"name" = "MENU_OTHER";}' \
+        '{"enabled" = 0;"name" = "MENU_CONVERSION";}' \
+        '{"enabled" = 0;"name" = "MENU_EXPRESSION";}' \
+        '{"enabled" = 0;"name" = "MENU_WEBSEARCH";}' \
+        '{"enabled" = 0;"name" = "MENU_SPOTLIGHT_SUGGESTIONS";}'
 
