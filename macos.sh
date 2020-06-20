@@ -46,7 +46,7 @@ sudo pkill -HUP socketfilterfw
 #
 # DNS - Blacklist DNS list
 #
-curl "https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts" | sudo tee -a /etc/hosts
+curl --silent "https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts" | sudo tee -a /etc/hosts 1>/dev/null
 
 # 
 # Captive Portals - disable assistant
@@ -155,6 +155,31 @@ sudo nfsd disable 2>/dev/null
 sudo chmod  og-rw /Users/[a-z]*
 
 # 5.8 Disable automatic login (Scored)
+sudo defaults delete /Library/Preferences/com.apple.loginwindow autoLoginUser 2>/dev/null
 
-sudo defaults delete /Library/Preferences/com.apple.loginwindow autoLoginUser
+
+
+##################################################################
+# Guide to Securing macOS 10.12
+# https://csrc.nist.gov/CSRC/media/Publications/sp/800-179/rev-1/draft/documents/sp800-179r1-draft.pdf
+##################################################################
+
+# J.4. Hide users list
+sudo defaults write /Library/Preferences/com.apple.loginwindow.plist SHOWFULLNAME -bool true
+
+# J.10. Wireless networking - Disable AirDrop
+defaults write ~/Library/Preferences/com.apple.NetworkBrowser.plist DisableAirDrop -bool true
+
+# J.13. Privacy
+
+# Disable sending of diagnostic data to Apple
+defaults write ~/Library/Preferences/ByHost/com.apple.SubmitDiagInfo.$HW_UUID.plist AutoSubmit -bool false
+
+# Disable Siri
+defaults write ~/Library/Preferences/com.apple.assistant.support.plist "Assistant Enabled" -int 0
+
+# Disable lookup suggestions
+defaults write ~/Library/Preferences/com.apple/lookup.shared.plist LookupSuggestionsDisabled -int 1
+
+
 
