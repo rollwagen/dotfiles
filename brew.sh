@@ -26,6 +26,7 @@ brew install pstree
 brew install openssl
 brew install curl-openssl
 brew install wget
+brew install neovim
 
 # Install some security/cyber/CTF tools
 brew install john-jumbo
