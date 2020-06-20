@@ -101,5 +101,6 @@ brew cask install "tidal"
 
 
 # Remove outdated versions from the cellar.
+brew analytics off
 brew cleanup
 brew doctor
