@@ -99,6 +99,13 @@ brew cask install "handbrake"
 
 brew cask install "tidal"
 
+#
+# mas-cli - Mac Apple Store CLI
+#
+brew install mas
+# Microsoft Remote Desktop
+mas install 1295203466
+
 
 # Remove outdated versions from the cellar.
 brew analytics off
