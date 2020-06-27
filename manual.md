@@ -1,4 +1,12 @@
 
+## VMWare Fusion & Vagrant
+* Download & install.
+```sh
+vagrant plugin install vagrant-vmware-desktop
+vagrant plugin license vagrant-vmware-desktop ~/license.lic
+```
+
+
 ## dnscryp
 * `brew install dnscrypt-proxy`
 * `sudo brew services restart dnscrypt-proxy`
@@ -14,7 +22,7 @@
 ## TinkerTool
 * [https://www.bresink.com/osx/0TinkerTool/download.php]
 
-## Chrome
+## Browser: Chrome
 ### Extentions
 * _uBlockOrigin_ | [https://chrome.google.com/webstore/detail/ublock-origin/cjpalhdlnbpafiamejdnhcphjbkeiagm]
 * _HTTPS Everywhere_ | [https://chrome.google.com/webstore/detail/https-everywhere/gcbommkclmclpchllfjekcdonpmejbdp]
@@ -27,7 +35,7 @@
 	* Block Third Party Cookies
 	* Send a 'Do Not Track'
 
-## Firefox
+## Browser: Firefox
 
 ### Extentions
 * _HTTPS Everywhere_ | [https://www.eff.org/https-everywhere]
@@ -37,3 +45,4 @@
 * _Enhanced Tracking Protection_ | [about:preferences#privacy]
 	* Strict
 	* Send web sites a "Do Not Track" 
+
