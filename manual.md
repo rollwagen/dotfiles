@@ -34,6 +34,7 @@ vagrant plugin license vagrant-vmware-desktop ~/license.lic
 * _Cookie Setting_ chrome://settings/cookies?search=Privacy
 	* Block Third Party Cookies
 	* Send a 'Do Not Track'
+* Setting -> 'Zoom' -> Page Zoom default to 90%
 
 ## Browser: Firefox
 
