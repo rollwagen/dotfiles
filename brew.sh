@@ -41,6 +41,7 @@ brew install suricata
 brew install telnet
 
 brew install openvpn
+brew install dnscrypt-proxy
 
 # Install other useful binaries.
 brew install git
@@ -63,11 +64,6 @@ brew install zsh-syntax-highlighting
 brew install fzf
 brew install fd
 brew install zsh-completion
-# TODO shell completions + include in bashrc/zshrc  
-# $(brew --prefix)/opt/fzf/install
-# export FZF_DEFAULT_COMMAND='fd --type f --exclude "/Library/" --exclude "/Music/"'
-# export FZF_CTRL_T_COMMAND='fd --type f --exclude "Library/" --exclude "Music/"'
-# export FZF_ALT_C_COMMAND='fd --type d --exclude "Library/" --exclude "Music/"'
 
 # Public Clouds
 brew install azure-cli
