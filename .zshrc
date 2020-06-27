@@ -76,4 +76,4 @@ export FZF_CTRL_T_COMMAND='fd --type f --exclude "Library/" --exclude "Music/"'
 export FZF_ALT_C_COMMAND='fd --type d --exclude "Library/" --exclude "Music/"'
 
 # Import aliases
-source ".alias"
+source ~/.alias
