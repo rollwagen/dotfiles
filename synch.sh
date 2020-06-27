@@ -10,6 +10,7 @@ function doSynch() {
 		--exclude "README.md" \
 		--exclude "brew.sh" \
 		--exclude "macos.sh" \
+		--exclude "manual.md" \
 		-avh . ~
 }
 
