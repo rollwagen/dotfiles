@@ -77,3 +77,7 @@ export FZF_ALT_C_COMMAND='fd --type d --exclude "Library/" --exclude "Music/"'
 
 # Import aliases
 source ~/.alias
+
+# Color adjustments (e.g. dir listing)
+export LSCOLORS=ExFxDxCxegedabagacad
+
