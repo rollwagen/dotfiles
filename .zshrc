@@ -83,3 +83,6 @@ source ~/.alias
 # Color adjustments (e.g. dir listing)
 export LSCOLORS=ExFxDxCxegedabagacad
 
+# for '-?' etc to work in zsh (see https://github.com/ohmyzsh/ohmyzsh/issues/31)
+unsetopt nomatch
+
