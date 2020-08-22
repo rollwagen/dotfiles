@@ -53,7 +53,7 @@ fi
 [[ /usr/local/bin/kubectl ]] && source <(kubectl completion zsh)
 
 # iTerm2 shell integration
-#FIX [[-f ~/.iterm2_shell_integration.zsh]] && source ~/.iterm2_shell_integration.zsh
+[ -f ~/.iterm2_shell_integration.zsh ] && source ~/.iterm2_shell_integration.zsh
 
 # Ctrl-U
 bindkey \^U backward-kill-line
