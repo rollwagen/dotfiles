@@ -2,6 +2,7 @@
 [user]
 	#email = 
 	name = rollwagen
+	email = rollwagen@gmail.com
 [color]
 	ui = true
 [credential]
@@ -11,3 +12,4 @@
 [alias]
 	s = status --short --branch
 	cma = commit --all -m
+	l = log --pretty='%C(yellow)%h%C(reset) | %C(red)%d%Creset %C(cyan)%s%C(reset) %C(green)(%cr)%C(reset)' --graph --max-count=20
