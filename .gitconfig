@@ -15,5 +15,6 @@
 	cma = commit --all -m
 	l = log --pretty='%C(yellow)%h%C(reset) | %C(red)%d%Creset %C(cyan)%s%C(reset) %C(green)(%cr)%C(reset)' --graph --max-count=20
 	diff-prose = diff --word-diff --unified=10
+	unstage = reset HEAD
 [diff]
 	algorithm = histogram
