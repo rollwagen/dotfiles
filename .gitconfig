@@ -9,6 +9,7 @@
 	helper = cache --timeout=3600
 [core]
 	editor = vim
+	pager =
 [alias]
 	s = status --short --branch
 	cma = commit --all -m
