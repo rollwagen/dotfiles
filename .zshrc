@@ -63,25 +63,21 @@ export PATH="/usr/local/sbin:$PATH"
 # vmware fusion tools path
 export PATH=/Volumes/VMware\ Fusion/VMware\ Fusion.app/Contents/Library/:$PATH
 
-#
 # Fuzzy finder config / completion
-#
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # Alt-c for fuzzy finder
 bindkey "ç" fzf-cd-widget
 
-# FZF_ALT_C_COMMAND (orig:  fd --type d --exclude "Library/" --exclude "Music/")
-# - follow also symlinks
-export FZF_ALT_C_COMMAND='fd --follow --type d --exclude "Library/" --exclude "Music/"'
-
 # Azure auto completion
 autoload bashcompinit && bashcompinit
 [ -f /usr/local/etc/bash_completion.d/az ] && source /usr/local/etc/bash_completion.d/az
 
+# FZF_ALT_C_COMMAND (orig:  fd --type d --exclude "Library/" --exclude "Music/")
+# - follow also symlinks
 export FZF_DEFAULT_COMMAND='fd --type f --exclude "/Library/" --exclude "/Music/"'
 export FZF_CTRL_T_COMMAND='fd --type f --exclude "Library/" --exclude "Music/"'
-export FZF_ALT_C_COMMAND='fd --type d --exclude "Library/" --exclude "Music/"'
+export FZF_ALT_C_COMMAND='fd --follow --type d --exclude "Library/" --exclude "Music/"'
 
 # Import aliases
 source ~/.alias
