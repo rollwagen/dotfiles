@@ -88,3 +88,28 @@ export LSCOLORS=ExFxDxCxegedabagacad
 # for '-?' etc to work in zsh (see https://github.com/ohmyzsh/ohmyzsh/issues/31)
 unsetopt nomatch
 
+
+#
+# oh-my-zsh config
+#
+
+# Path to your oh-my-zsh installation.
+# export ZSH=~/.oh-my-zsh
+export ZSH="/Users/rollwagen/.oh-my-zsh"
+
+# Manually load git plugin (without oh-my-zsh)
+#source $ZSH/lib/git.zsh
+#source $ZSH/plugins/git/git.plugin.zsh
+
+ZSH_THEME="robbyrussell"
+
+plugins=(git)
+
+if [ -f "$ZSH/oh-my-zsh.sh" ]; then
+	source $ZSH/oh-my-zsh.sh
+fi
+
+#
+# END oh-my-zsh config.
+#
+
