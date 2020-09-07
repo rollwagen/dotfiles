@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+command -v rsync > /dev/null || echo 'ERROR: rsync not found. Please install first.'; exit;
+
 cd "$(dirname "$0")" || exit 5
 #git pull
 
