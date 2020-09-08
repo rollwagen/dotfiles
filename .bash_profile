@@ -12,8 +12,16 @@ export PATH="/usr/local/opt/sqlite/bin:$PATH"
 export CLICOLOR=1
 export LSCOLORS=ExFxDxCxegedabagacad
 
-source /usr/local/etc/profile.d/bash_completion.sh
-source /usr/local/etc/bash_completion.d/az
+# macos
+[ -f "/usr/local/etc/profile.d/bash_completion.sh" ] && source /usr/local/etc/profile.d/bash_completion.sh
+# debian / ubuntu
+[ -f "/etc/profile.d/bash_completion.sh" ] && source /etc/profile.d/bash_completion.sh
+
+# macos
+[ -f "/usr/local/etc/bash_completion.d/az" ] && source /usr/local/etc/bash_completion.d/az
+# debian / ubuntu
+[ -f "/etc/bash_completion.d/azure-cli" ] && source /etc/bash_completion.d/azure-cli
+
 # git bash completion
 # https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash
 complete -C /usr/local/bin/terraform terraform
