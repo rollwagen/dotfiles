@@ -112,3 +112,7 @@ export LSCOLORS=ExFxDxCxegedabagacad
 # for '-?' etc to work in zsh (see https://github.com/ohmyzsh/ohmyzsh/issues/31)
 unsetopt nomatch
 
+# Python / pyenv specifics
+## eval "$(pyenv init -)"
+## eval "$(pyenv virtualenv-init -)"
+
