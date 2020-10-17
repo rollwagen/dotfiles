@@ -1,6 +1,7 @@
 
 ## VMWare Fusion & Vagrant
-* Download & install.
+* Download package from [vagrant plugin install vagrant-vmware-desktop]
+* Install:
 ```sh
 vagrant plugin install vagrant-vmware-desktop
 vagrant plugin license vagrant-vmware-desktop ~/license.lic
