@@ -27,6 +27,7 @@ brew install openssl
 brew install curl-openssl
 brew install wget
 brew install neovim
+brew install tree
 
 # Install some security/cyber/CTF tools
 brew install john-jumbo
