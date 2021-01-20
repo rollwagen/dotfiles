@@ -28,6 +28,7 @@ brew install curl-openssl
 brew install wget
 brew install neovim
 brew install tree
+brew install watch
 
 # Install some security/cyber/CTF tools
 brew install john-jumbo
