@@ -4,8 +4,7 @@
 # ################################ #
 
 # Path to your oh-my-zsh installation.
-# export ZSH=~/.oh-my-zsh
-export ZSH="/Users/rollwagen/.oh-my-zsh"
+export ZSH=~/.oh-my-zsh
 
 # Manually load git plugin (without oh-my-zsh)
 #source $ZSH/lib/git.zsh
@@ -36,9 +35,9 @@ bindkey -e
 # End of lines configured by zsh-newuser-install
 
 # The following lines were added by compinstall
-zstyle :compinstall filename '/Users/rollwagen/.zshrc'
-#autoload -Uz compinit
-#compinit
+zstyle :compinstall filename '~/.zshrc'
+autoload -Uz compinit
+compinit
 # End of lines added by compinstall
 
 
@@ -61,12 +60,13 @@ zstyle :compinstall filename '/Users/rollwagen/.zshrc'
 #   chmod go-w '/usr/local/share'
 
 
-#To activate the syntax highlighting, add the following at the end of your .zshrc:
-#Ubuntu: /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+# Activate zsh syntax highlighting (pre-req package 'zsh-syntax-highlighting')
+# MacOS
 ZSH_HIGHLIGHT_HIGHLIGHTERS_FILE=/usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-if [ -f "$ZSH_HIGHLIGHT_HIGHLIGHTERS_FILE" ]; then
-    source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-fi
+[ -f "$ZSH_HIGHLIGHT_HIGHLIGHTERS_FILE" ] && source "$ZSH_HIGHLIGHT_HIGHLIGHTERS_FILE"
+# Ubuntu / Debian 
+ZSH_HIGHLIGHT_HIGHLIGHTERS_FILE=/usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+[ -f "$ZSH_HIGHLIGHT_HIGHLIGHTERS_FILE" ] && source "$ZSH_HIGHLIGHT_HIGHLIGHTERS_FILE"
 
 
 # If you receive "highlighters directory not found" error message,
@@ -112,13 +112,10 @@ export LSCOLORS=ExFxDxCxegedabagacad
 # for '-?' etc to work in zsh (see https://github.com/ohmyzsh/ohmyzsh/issues/31)
 unsetopt nomatch
 
-
-# Created by `userpath` on 2020-10-22 19:36:39
-export PATH="$PATH:/Users/rollwagen/.local/bin"
-
 # Python / pyenv specifics
 ## eval "$(pyenv init -)"
 ## eval "$(pyenv virtualenv-init -)"
+[ -d ~/.local/bin ] && export PATH="$PATH:~/.local/bin"
 
 # Google Cloud SDK
 GCSDK_PATH_ZSH="/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc"
@@ -126,5 +123,4 @@ GCSDK_COMPL_ZSH="/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/co
 
 [ -f $GCSDK_PATH_ZSH ] && source $GCSDK_PATH_ZSH
 [ -f $GCSDK_COMPL_ZSH ] && source $GCSDK_COMPL_ZSH
-
 
