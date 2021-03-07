@@ -120,7 +120,11 @@ unsetopt nomatch
 # Google Cloud SDK
 GCSDK_PATH_ZSH="/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc"
 GCSDK_COMPL_ZSH="/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc"
-
 [ -f $GCSDK_PATH_ZSH ] && source $GCSDK_PATH_ZSH
 [ -f $GCSDK_COMPL_ZSH ] && source $GCSDK_COMPL_ZSH
+
+# AWS CLI command completion
+[ -f /usr/local/bin/aws_completer ] && complete -C '/usr/local/bin/aws_completer' aws
+[ -f /usr/bin/aws_completer ] && complete -C '/usr/bin/aws_completer' aws
+
 
