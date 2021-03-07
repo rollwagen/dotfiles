@@ -13,7 +13,7 @@ export ZSH="/Users/rollwagen/.oh-my-zsh"
 
 ZSH_THEME="robbyrussell"
 
-plugins=(git)
+plugins=(git docker docker-compose)
 
 if [ -f "$ZSH/oh-my-zsh.sh" ]; then
 	source $ZSH/oh-my-zsh.sh
@@ -112,7 +112,19 @@ export LSCOLORS=ExFxDxCxegedabagacad
 # for '-?' etc to work in zsh (see https://github.com/ohmyzsh/ohmyzsh/issues/31)
 unsetopt nomatch
 
+
+# Created by `userpath` on 2020-10-22 19:36:39
+export PATH="$PATH:/Users/rollwagen/.local/bin"
+
 # Python / pyenv specifics
 ## eval "$(pyenv init -)"
 ## eval "$(pyenv virtualenv-init -)"
+
+# Google Cloud SDK
+GCSDK_PATH_ZSH="/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc"
+GCSDK_COMPL_ZSH="/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc"
+
+[ -f $GCSDK_PATH_ZSH ] && source $GCSDK_PATH_ZSH
+[ -f $GCSDK_COMPL_ZSH ] && source $GCSDK_COMPL_ZSH
+
 
