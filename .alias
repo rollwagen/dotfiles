@@ -1,2 +1,6 @@
 
-alias ls='ls -G'
+if [[ "$OSTYPE" == "linux-gnu"* ]]; then
+	alias ls='ls --color'
+else
+	alias ls='ls -G'
+fi
