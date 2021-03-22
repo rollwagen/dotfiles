@@ -13,7 +13,7 @@ vagrant plugin license vagrant-vmware-desktop ~/license.lic
 * `sudo brew services restart dnscrypt-proxy`
 * System Preferences -> Network: configure DNS to point to 172.0.0.1
 * consider adding `8.8.8.8` and/or `1.1.1.1`as failover/backup
-* see also [https://github.com/drduh/macOS-Security-and-Privacy-Guide#dnscrypt] or [https://github.com/DNSCrypt/dnscrypt-proxy]
+* see also (https://github.com/drduh/macOS-Security-and-Privacy-Guide#dnscrypt) or (https://github.com/DNSCrypt/dnscrypt-proxy)
 
 ## zsh
 * Login warning prompt: `zsh compinit: insecure directories, run compaudit for list.`
@@ -25,7 +25,7 @@ vagrant plugin license vagrant-vmware-desktop ~/license.lic
 
 ## Browser: Chrome
 ### Extentions
-* _uBlockOrigin_ | [https://chrome.google.com/webstore/detail/ublock-origin/cjpalhdlnbpafiamejdnhcphjbkeiagm]
+* [uBlockOrigin](https://chrome.google.com/webstore/detail/ublock-origin/cjpalhdlnbpafiamejdnhcphjbkeiagm)
 * _HTTPS Everywhere_ | [https://chrome.google.com/webstore/detail/https-everywhere/gcbommkclmclpchllfjekcdonpmejbdp]
 * _LastPass_ 
 
