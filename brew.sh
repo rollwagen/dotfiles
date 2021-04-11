@@ -73,6 +73,7 @@ brew install azure-cli
 
 # Casks
 brew cask install "iterm2"
+brew cask install "alacritty"
 brew cask install "visual-studio-code"
 brew cask install "vagrant"
 brew cask install "vagrant-vmware-utility"
