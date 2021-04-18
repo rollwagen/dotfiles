@@ -29,6 +29,8 @@ brew install wget
 brew install neovim
 brew install tree
 brew install watch
+brew install wireshark
+brew install yara
 
 # Install some security/cyber/CTF tools
 brew install john-jumbo
@@ -41,17 +43,20 @@ brew install radare2
 brew install snort
 brew install suricata
 brew install telnet
+brew install bettercap
 
 brew install openvpn
 brew install dnscrypt-proxy
 
 # Install other useful binaries.
 brew install git
+brew install gh
 brew install p7zip
 
 # IaC tools
 brew install packer
 brew install terraform
+brew install terrascan
 brew install terraform-docs
 brew install volatility
 
@@ -66,10 +71,26 @@ brew install zsh-syntax-highlighting
 brew install fzf
 brew install fd
 brew install zsh-completion
+brew install zsh-completions
+brew install tldr
+brew install glow
+brew install ripgrep
+brew install lsd
+brew install bat
 
 # Public Clouds
 brew install azure-cli
+brew install awscli
 
+brew install basictex
+brew install hackintool
+brew install knockknock
+brew install pandoc
+brew install sqlectron
+brew install sqlite
+brew install 
+brew install 
+brew install openjdk
 
 # Casks
 brew install "iterm2"
@@ -100,6 +121,7 @@ brew install "vlc"
 brew install "handbrake"
 
 brew install "tidal"
+
 
 #
 # mas-cli - Mac Apple Store CLI
