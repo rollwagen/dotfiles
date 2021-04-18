@@ -72,35 +72,34 @@ brew install azure-cli
 
 
 # Casks
-brew cask install "iterm2"
-
-brew cask install "alacritty"
+brew install "iterm2"
+brew install "alacritty"
 brew tap homebrew/cask-fonts
 brew install font-fira-code-nerd-font
 
-brew cask install "visual-studio-code"
-brew cask install "vagrant"
-brew cask install "vagrant-vmware-utility"
-brew cask install "powershell"
+brew install "visual-studio-code"
+brew install "vagrant"
+brew install "vagrant-vmware-utility"
+brew install "powershell"
 
-brew cask install "slack"
-brew cask install "discord"
+brew install "slack"
+brew install "discord"
 
-brew cask install "firefox"
-brew cask install "google-chrome"
-brew cask install "calibre"
+brew install "firefox"
+brew install "google-chrome"
+brew install "calibre"
 
-#brew cask install "idafree"
-brew cask install "metasploit"
+#brew install "idafree"
+brew install "metasploit"
 
-brew cask install "dropbox"
-brew cask install "google-backup-and-sync"
-brew cask install "transmission"
+brew install "dropbox"
+brew install "google-backup-and-sync"
+brew install "transmission"
 
-brew cask install "vlc"
-brew cask install "handbrake"
+brew install "vlc"
+brew install "handbrake"
 
-brew cask install "tidal"
+brew install "tidal"
 
 #
 # mas-cli - Mac Apple Store CLI

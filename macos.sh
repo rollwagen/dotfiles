@@ -26,31 +26,39 @@
 #
 
 # Enable Firewall
+echo "Enable Firewall..."
 sudo /usr/libexec/ApplicationFirewall/socketfilterfw --setglobalstate on
 
 # Turning on log mode
+echo "Turning on log mode..."
 sudo /usr/libexec/ApplicationFirewall/socketfilterfw --setloggingmode on
 
 # Stealth mode (no response to ICMP ping requests, doesn't answer to connection attempts from a closed TCP or UDP port)
+echo "Turning on stealth mode..."
 sudo /usr/libexec/ApplicationFirewall/socketfilterfw --setstealthmode on
 
 # Allow  signed built-in applications automatically
+echo "Allow signed built-in applications automatically (firewall) ..."
 sudo /usr/libexec/ApplicationFirewall/socketfilterfw --setallowsigned on
 
 # Disable allow signed downloaded applications automatically
+echo "Disable allow signed downloaded applications automatically (firewall) ..."
 sudo /usr/libexec/ApplicationFirewall/socketfilterfw --setallowsignedapp off
 
 # Restart the process by sending a line hangup signal
+echo "Restarting socketfilter firewall..."
 sudo pkill -HUP socketfilterfw
 
 #
 # DNS - Blacklist DNS list
 #
+echo "Adding blacklist to /etc/hosts ..."
 curl --silent "https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts" | sudo tee -a /etc/hosts 1>/dev/null
 
 # 
 # Captive Portals - disable assistant
 #
+echo "Disable Captive Portals assistant..."
 sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.captive.control.plist Active -bool false
 
 #
@@ -58,20 +66,25 @@ sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.captive.c
 #
 
 # Set screen to lock as soon as the screensaver starts:
+echo "Set screen to lock as soon as the screensaver starts..."
 defaults write com.apple.screensaver askForPassword -int 1
 defaults write com.apple.screensaver askForPasswordDelay -int 0
 
 # Expose hidden files and Library folder in Finder:
+echo "Expose hidden files and Library folder in Finder..."
 defaults write com.apple.finder AppleShowAllFiles -bool true
 chflags nohidden ~/Library
 
 # Show all filename extensions (so that "Evil.jpg.app" cannot masquerade easily)
+echo "Show all filename extensions (so that "Evil.jpg.app" cannot masquerade easily) ..."
 defaults write NSGlobalDomain AppleShowAllExtensions -bool true
 
 # Don't default to saving documents to iCloud:
+echo "Don't default to saving documents to iCloud..."
 defaults write NSGlobalDomain NSDocumentSaveNewDocumentsToCloud -bool false
 
 # Disable Bonjour multicast advertisements
+echo "Disable Bonjour multicast advertisements..."
 sudo defaults write /Library/Preferences/com.apple.mDNSResponder.plist NoMulticastAdvertisements -bool YES
 
 
