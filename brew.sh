@@ -116,6 +116,7 @@ brew install "metasploit"
 brew install "dropbox"
 brew install "google-backup-and-sync"
 brew install "transmission"
+brew install --cask "transmission"
 
 brew install "vlc"
 brew install "handbrake"
