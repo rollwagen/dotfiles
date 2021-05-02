@@ -7,6 +7,9 @@ vagrant plugin install vagrant-vmware-desktop
 vagrant plugin license vagrant-vmware-desktop ~/license.lic
 ```
 
+## if Laptop/Macbook
+`brew install haptic-touch-bar`
+
 ## vi
 * Install Vim-Plug plugin manager
 ```bash

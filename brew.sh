@@ -1,8 +1,7 @@
 #!/usr/bin/env bash
 
 
-which -s brew
-if [[ $? != 0 ]] ; then
+if [ ! -f "/usr/local/bin/brew" ] ; then
     # Install Homebrew
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
 else
@@ -44,12 +43,14 @@ brew install snort
 brew install suricata
 brew install telnet
 brew install bettercap
+brew install hex-fiend
 
 brew install openvpn
 brew install dnscrypt-proxy
 
 # Install other useful binaries.
 brew install git
+brew install github
 brew install gh
 brew install p7zip
 
@@ -65,8 +66,14 @@ brew install docker-completion
 brew install helm
 brew install kubernetes-cli
 brew install skopeo
+brew install k9s
+brew install k3d
+brew install trivy
 
 # Shell related
+brew install mosh
+brew install tmux
+brew install shellcheck
 brew install zsh-syntax-highlighting
 brew install fzf
 brew install fd
@@ -77,10 +84,15 @@ brew install glow
 brew install ripgrep
 brew install lsd
 brew install bat
+brew install colordiff
+brew install curl
 
 # Public Clouds
 brew install azure-cli
+brew install google-cloud-sdk
 brew install awscli
+brew install aws-elasticbeanstalk
+brew install aws-sam-cli
 
 brew install basictex
 brew install hackintool
@@ -88,11 +100,10 @@ brew install knockknock
 brew install pandoc
 brew install sqlectron
 brew install sqlite
-brew install 
-brew install 
 brew install openjdk
 
 # Casks
+brew install "eul"
 brew install "iterm2"
 brew install "alacritty"
 brew tap homebrew/cask-fonts
@@ -105,6 +116,7 @@ brew install "powershell"
 
 brew install "slack"
 brew install "discord"
+brew install "zoom"
 
 brew install "firefox"
 brew install "google-chrome"
