@@ -29,7 +29,7 @@ curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.c
   * OR `compaudit | xargs chmod g-w,o-w`
 
 ## TinkerTool
-* [https://www.bresink.com/osx/0TinkerTool/download.php]
+* (https://www.bresink.com/osx/0TinkerTool/download.php)
 
 ## Browser: Chrome
 ### Extentions
@@ -48,11 +48,11 @@ curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.c
 ## Browser: Firefox
 
 ### Extentions
-* _HTTPS Everywhere_ | [https://www.eff.org/https-everywhere]
-* _Privacy Badger_ | [https://www.eff.org/privacybadger]
+* [HTTPS Everywhere](https://www.eff.org/https-everywhere)
+* [Privacy Badger](https://www.eff.org/privacybadger)
 
 ### Settings
-* _Enhanced Tracking Protection_ | [about:preferences#privacy]
+* _Enhanced Tracking Protection_ `about:preferences#privacy`
 	* Strict
 	* Send web sites a "Do Not Track" 
 
