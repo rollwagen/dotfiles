@@ -113,8 +113,10 @@ export LSCOLORS=ExFxDxCxegedabagacad
 unsetopt nomatch
 
 # Python / pyenv specifics
-## eval "$(pyenv init -)"
 ## eval "$(pyenv virtualenv-init -)"
+if type "pyenv" > /dev/null; then
+	eval "$(pyenv init -)"
+fi
 [ -d ~/.local/bin ] && export PATH="$PATH:~/.local/bin"
 
 # Google Cloud SDK
