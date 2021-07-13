@@ -8,7 +8,7 @@
 	helper = cache --timeout=3600
 [core]
 	editor = vim
-	pager =
+	pager = delta
 [alias]
 	s = status --short --branch
 	cma = commit --all -m
@@ -19,3 +19,12 @@
 	algorithm = histogram
 [init]
 	defaultBranch = main
+
+[delta]
+	plus-style = "syntax #012800"
+	minus-style = "syntax #340001"
+	syntax-theme = Monokai Extended
+	navigate = true
+
+[interactive]
+	diffFilter = delta --color-only
