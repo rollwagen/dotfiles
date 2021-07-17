@@ -1,4 +1,3 @@
-
 # ################################ #
 #      oh-my-zsh config.           #
 # ################################ #
@@ -42,16 +41,13 @@ compinit
 
 
 #
-# brew zsh-completion
+# brew zsh-completion - to activate these completions, add the following to your .zshrc:
 #
-#To activate these completions, add the following to your .zshrc:
-
-  if type brew &>/dev/null; then
-    FPATH=$(brew --prefix)/share/zsh/site-functions:$FPATH
-
-    autoload -Uz compinit
-    compinit
-  fi
+if type brew &>/dev/null; then
+	FPATH=$(brew --prefix)/share/zsh/site-functions:$FPATH
+	autoload -Uz compinit
+	compinit
+fi
 
 #You may also need to force rebuild `zcompdump`:
 #   rm -f ~/.zcompdump; compinit
@@ -64,7 +60,7 @@ compinit
 # MacOS
 ZSH_HIGHLIGHT_HIGHLIGHTERS_FILE=/usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 [ -f "$ZSH_HIGHLIGHT_HIGHLIGHTERS_FILE" ] && source "$ZSH_HIGHLIGHT_HIGHLIGHTERS_FILE"
-# Ubuntu / Debian 
+# Ubuntu / Debian
 ZSH_HIGHLIGHT_HIGHLIGHTERS_FILE=/usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 [ -f "$ZSH_HIGHLIGHT_HIGHLIGHTERS_FILE" ] && source "$ZSH_HIGHLIGHT_HIGHLIGHTERS_FILE"
 
@@ -115,7 +111,7 @@ unsetopt nomatch
 # Python / pyenv specifics
 ## eval "$(pyenv virtualenv-init -)"
 if type "pyenv" > /dev/null; then
-	eval "$(pyenv init -)"
+	eval "$(pyenv init --path)"
 fi
 [ -d ~/.local/bin ] && export PATH="$PATH:~/.local/bin"
 
