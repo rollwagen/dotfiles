@@ -1,3 +1,4 @@
+
 # ################################ #
 #      oh-my-zsh config.           #
 # ################################ #
@@ -14,7 +15,7 @@ ZSH_THEME="robbyrussell"
 plugins=(git docker docker-compose)
 
 if [ -f "$ZSH/oh-my-zsh.sh" ]; then
-	source $ZSH/oh-my-zsh.sh
+  source $ZSH/oh-my-zsh.sh
 fi
 
 # ################################ #
@@ -41,13 +42,16 @@ compinit
 
 
 #
-# brew zsh-completion - to activate these completions, add the following to your .zshrc:
+# brew zsh-completion
 #
-if type brew &>/dev/null; then
-	FPATH=$(brew --prefix)/share/zsh/site-functions:$FPATH
-	autoload -Uz compinit
-	compinit
-fi
+#To activate these completions, add the following to your .zshrc:
+
+  if type brew &>/dev/null; then
+    FPATH=$FPATH:$(brew --prefix)/share/zsh/site-functions
+
+    autoload -Uz compinit
+    compinit
+  fi
 
 #You may also need to force rebuild `zcompdump`:
 #   rm -f ~/.zcompdump; compinit
@@ -108,12 +112,6 @@ export LSCOLORS=ExFxDxCxegedabagacad
 # for '-?' etc to work in zsh (see https://github.com/ohmyzsh/ohmyzsh/issues/31)
 unsetopt nomatch
 
-# Python / pyenv specifics
-## eval "$(pyenv virtualenv-init -)"
-if type "pyenv" > /dev/null; then
-	eval "$(pyenv init --path)"
-fi
-[ -d ~/.local/bin ] && export PATH="$PATH:~/.local/bin"
 
 # Google Cloud SDK
 GCSDK_PATH_ZSH="/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc"
@@ -126,4 +124,24 @@ GCSDK_COMPL_ZSH="/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/co
 [ -f /usr/bin/aws_completer ] && complete -C '/usr/bin/aws_completer' aws
 [ -f /usr/local/aws-cli/v2/current/bin/aws_completer ] && complete -C '/usr/local/aws-cli/v2/current/bin/aws_completer' aws
 
+eval "$(/opt/homebrew/bin/brew shellenv)"
+# Alacritty not available via brew on Apple Silicon
+[ -f /Users/rollwagen/.cargo/bin/alacritty ] && alias alacritty=/Users/rollwagen/.cargo/bin/alacritty
 
+# Python / pyenv specifics
+## eval "$(pyenv virtualenv-init -)"
+if type "pyenv" > /dev/null; then
+  eval "$(pyenv init --path)"
+fi
+[ -d ~/.local/bin ] && export PATH="$PATH:~/.local/bin"
+
+# broot - https://github.com/Canop/broot
+[ -f ~/.config/broot/launcher/bash/br ] && source ~/.config/broot/launcher/bash/br
+
+# cat->bat; ls->lsd
+if type "bat" > /dev/null; then
+  alias cat=bat
+fi
+if type "lsd" > /dev/null; then
+  alias ls=lsd
+fi
