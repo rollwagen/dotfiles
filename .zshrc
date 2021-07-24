@@ -126,7 +126,7 @@ GCSDK_COMPL_ZSH="/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/co
 
 eval "$(/opt/homebrew/bin/brew shellenv)"
 # Alacritty not available via brew on Apple Silicon
-[ -f /Users/rollwagen/.cargo/bin/alacritty ] && alias alacritty=/Users/rollwagen/.cargo/bin/alacritty
+[ -f ~/.cargo/bin/alacritty ] && alias alacritty=~/.cargo/bin/alacritty
 
 # Python / pyenv specifics
 ## eval "$(pyenv virtualenv-init -)"
