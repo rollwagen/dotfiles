@@ -12,11 +12,23 @@ set splitbelow
 set number
 set backspace=indent,eol,start
 
+colorscheme badwolf
+
+" tabnine
+"set rtp+=/Users/rollwagen/.vim/manual/tabnine-vim
+"set completeopt-=preview
 
 " Specify a directory for plugins
 " - For Neovim: stdpath('data') . '/plugged'
 " - Avoid using standard Vim directory names like 'plugin'
 call plug#begin('~/.vim/plugged')
+
+"
+" jedi-vim python completion etc
+"
+"Plug 'davidhalter/jedi-vim'
+"autocmd FileType python setlocal completeopt-=preview
+
 
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
