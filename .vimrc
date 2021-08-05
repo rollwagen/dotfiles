@@ -12,7 +12,7 @@ set splitbelow
 set number
 set backspace=indent,eol,start
 
-colorscheme badwolf
+colorscheme zenburn
 
 " tabnine
 "set rtp+=/Users/rollwagen/.vim/manual/tabnine-vim

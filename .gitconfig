@@ -23,8 +23,10 @@
 [delta]
 	plus-style = "syntax #012800"
 	minus-style = "syntax #340001"
-	syntax-theme = Monokai Extended
+	# syntax-theme = Monokai Extended / gruvbox-dark
+	syntax-theme = zenburn 
 	navigate = true
+	side-by-side = true
 
 [interactive]
 	diffFilter = delta --color-only

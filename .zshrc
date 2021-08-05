@@ -133,7 +133,7 @@ eval "$(/opt/homebrew/bin/brew shellenv)"
 if type "pyenv" > /dev/null; then
   eval "$(pyenv init --path)"
 fi
-[ -d ~/.local/bin ] && export PATH="$PATH:~/.local/bin"
+[ -d ~/.local/bin ] && export PATH=$PATH:~/.local/bin
 
 # broot - https://github.com/Canop/broot
 [ -f ~/.config/broot/launcher/bash/br ] && source ~/.config/broot/launcher/bash/br
