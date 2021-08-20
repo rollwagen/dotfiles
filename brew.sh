@@ -102,6 +102,10 @@ brew install sqlectron
 brew install sqlite
 brew install openjdk
 
+# Python
+brew install pyenv
+brew install pipx
+
 # Casks
 brew install "eul"
 brew install "iterm2"
