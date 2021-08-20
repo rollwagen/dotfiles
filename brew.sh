@@ -50,6 +50,7 @@ brew install dnscrypt-proxy
 
 # Install other useful binaries.
 brew install git
+brew install git-delta
 brew install github
 brew install gh
 brew install p7zip
@@ -84,6 +85,7 @@ brew install glow
 brew install ripgrep
 brew install lsd
 brew install bat
+brew install less
 brew install colordiff
 brew install curl
 

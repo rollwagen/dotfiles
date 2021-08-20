@@ -10,14 +10,28 @@ inoremap jk <esc>
 
 set splitbelow
 set number
+set backspace=indent,eol,start
 
+colorscheme zenburn
+
+" tabnine
+"set rtp+=/Users/rollwagen/.vim/manual/tabnine-vim
+"set completeopt-=preview
 
 " Specify a directory for plugins
 " - For Neovim: stdpath('data') . '/plugged'
 " - Avoid using standard Vim directory names like 'plugin'
 call plug#begin('~/.vim/plugged')
 
+"
+" jedi-vim python completion etc
+"
+"Plug 'davidhalter/jedi-vim'
+"autocmd FileType python setlocal completeopt-=preview
+
+
 Plug 'tpope/vim-surround'
+Plug 'tpope/vim-unimpaired'
 
 "
 " Syntax highlighting for Powershell
@@ -35,7 +49,32 @@ Plug 'vim-syntastic/syntastic'
 "
 Plug 'vimwiki/vimwiki'
 
+"
+" Airline - status/tabline plugin https://github.com/vim-airline/vim-airline
+"
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+
 call plug#end()
+
+
+
+"
+" Airline plugin config"
+"
+" themes: 'simple' 'alduin' 'luna'
+let g:airline_theme='luna'
+
+" changed from default: 'fixed' width for line/col number so field doesn't dynamically extend/shrink so much e.g. %v% --> %3v%
+let g:airline_section_z='%p%%%#__accent_bold#%{g:airline_symbols.linenr}%3l%#__restore__#%#__accent_bold#/%3L%{g:airline_symbols.maxlinenr}%#__restore__#%#__accent_bold#%{g:airline_symbols.colnr}%3v%#__restore__#'
+
+if !exists('g:airline_symbols')
+	let g:airline_symbols = {}
+endif
+let g:airline_symbols.colnr = ''
+let g:airline_symbols.maxlinenr = 'Ξ'
+let g:airline_symbols.linenr = ' '
+
 
 "
 " Rust plugin options
@@ -53,10 +92,16 @@ set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 
+let g:syntastic_warning_symbol = "⚠"
 let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
+let g:syntastic_auto_loc_list = 0
 let g:syntastic_check_on_open = 0
 let g:syntastic_check_on_wq = 0
+
+let g:syntastic_python_checkers = ['flake8']
+
+let g:syntastic_markdown_mdl_exec = "markdownlint"
+let g:syntastic_markdown_mdl_args = ""
 
 
 "

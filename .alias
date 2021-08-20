@@ -2,5 +2,10 @@
 if [[ "$OSTYPE" == "linux-gnu"* ]]; then
 	alias ls='ls --color'
 else
-	alias ls='ls -G'
+	# alias ls='ls -G'
+	alias ls=lsd
+	alias vim=/opt/homebrew/bin/vim
+	alias vi=vim
+	alias cat=bat
 fi
+

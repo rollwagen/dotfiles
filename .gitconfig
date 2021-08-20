@@ -19,19 +19,20 @@
 	l = log --pretty='%C(yellow)%h%C(reset) | %C(red)%d%Creset %C(cyan)%s%C(reset) %C(green)(%cr)%C(reset)' --graph --max-count=20
 	diff-prose = diff --word-diff --unified=10
 	unstage = reset HEAD
+
 [diff]
 	algorithm = histogram
 
 [init]
 	defaultBranch = main
 
-
 [delta]
-    plus-style = "syntax #012800"
-    minus-style = "syntax #340001"
-    syntax-theme = Monokai Extended
-    navigate = true
-    side-by-side = true
+	plus-style = "syntax #012800"
+	minus-style = "syntax #340001"
+	# syntax-theme = Monokai Extended / gruvbox-dark
+	syntax-theme = zenburn 
+	navigate = true
+	side-by-side = true
 
 [interactive]
-    diffFilter = delta --color-only
+	diffFilter = delta --color-only
