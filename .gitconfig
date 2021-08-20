@@ -1,14 +1,18 @@
-# This is Git's per-user configuration file.
+
 [user]
 	name = rollwagen
 	email = rollwagen@gmail.com
+
 [color]
 	ui = true
+
 [credential]
 	helper = cache --timeout=3600
+
 [core]
 	editor = vim
-	pager =
+	pager = delta
+
 [alias]
 	s = status --short --branch
 	cma = commit --all -m
@@ -17,5 +21,17 @@
 	unstage = reset HEAD
 [diff]
 	algorithm = histogram
+
 [init]
 	defaultBranch = main
+
+
+[delta]
+    plus-style = "syntax #012800"
+    minus-style = "syntax #340001"
+    syntax-theme = Monokai Extended
+    navigate = true
+    side-by-side = true
+
+[interactive]
+    diffFilter = delta --color-only
