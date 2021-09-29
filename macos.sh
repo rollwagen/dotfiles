@@ -8,7 +8,7 @@
 # Security hardening check:
 #     https://github.com/CISOfy/lynis
 #     https://github.com/kristovatlas/osx-config-check
-# 
+#
 
 
 # sudo launchctl unload -w /System/Library/LaunchDaemons/com.apple.mDNSResponder.plist
@@ -55,7 +55,7 @@ sudo pkill -HUP socketfilterfw
 echo "Adding blacklist to /etc/hosts ..."
 curl --silent "https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts" | sudo tee -a /etc/hosts 1>/dev/null
 
-# 
+#
 # Captive Portals - disable assistant
 #
 echo "Disable Captive Portals assistant..."
@@ -76,7 +76,7 @@ defaults write com.apple.finder AppleShowAllFiles -bool true
 chflags nohidden ~/Library
 
 # Show all filename extensions (so that "Evil.jpg.app" cannot masquerade easily)
-echo "Show all filename extensions (so that "Evil.jpg.app" cannot masquerade easily) ..."
+echo "Show all filename extensions (so that \"Evil.jpg.app\" cannot masquerade easily) ..."
 defaults write NSGlobalDomain AppleShowAllExtensions -bool true
 
 # Don't default to saving documents to iCloud:
@@ -111,7 +111,7 @@ defaults write com.apple.finder ShowStatusBar -bool true
 
 # "Displaying full POSIX path as Finder window title"
 defaults write com.apple.finder _FXShowPosixPathInTitle -bool true
- 
+
 # "Disabling the warning when changing a file extension"
 defaults write com.apple.finder FXEnableExtensionChangeWarning -bool false
 
@@ -186,7 +186,8 @@ defaults write ~/Library/Preferences/com.apple.NetworkBrowser.plist DisableAirDr
 # J.13. Privacy
 
 # Disable sending of diagnostic data to Apple
-defaults write ~/Library/Preferences/ByHost/com.apple.SubmitDiagInfo.$HW_UUID.plist AutoSubmit -bool false
+HW_UUID=$(system_profiler SPHardwareDataType 2> /dev/null | grep 'Hardware UUID' | awk ' { print $3 }')
+defaults write ~/Library/Preferences/ByHost/com.apple.SubmitDiagInfo."$HW_UUID".plist AutoSubmit -bool false
 
 # Disable Siri
 defaults write ~/Library/Preferences/com.apple.assistant.support.plist "Assistant Enabled" -int 0
