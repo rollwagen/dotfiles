@@ -6,3 +6,6 @@ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 # vim / zenburn theme
 curl -sLo ~/.vim/colors/zenburn.vim --create-dirs \
 https://raw.githubusercontent.com/jnurmine/Zenburn/master/colors/zenburn.vim
+
+# oh-my-zsh
+sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
