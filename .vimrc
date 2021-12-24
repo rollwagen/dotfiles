@@ -23,6 +23,8 @@ colorscheme zenburn
 " - Avoid using standard Vim directory names like 'plugin'
 call plug#begin('~/.vim/plugged')
 
+Plug 'neoclide/coc.nvim'
+
 "
 " jedi-vim python completion etc
 "
@@ -47,7 +49,7 @@ Plug 'vim-syntastic/syntastic'
 "
 " Vim Wiki - https://github.com/vimwiki/vimwiki 
 "
-Plug 'vimwiki/vimwiki'
+Plug 'vimwiki/vimwiki', { 'on': [] } "turned off
 
 "
 " Airline - status/tabline plugin https://github.com/vim-airline/vim-airline
