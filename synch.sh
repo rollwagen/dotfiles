@@ -6,7 +6,7 @@ cd "$(dirname "$0")" || exit 5
 #git pull
 
 function doSynch() {
-	rsync --exclude ".git/" \
+	rsync --backup --exclude ".git/" \
 		--exclude ".gitignore" \
 		--exclude "synch.sh" \
 		--exclude "README.md" \
