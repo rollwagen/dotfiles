@@ -18,6 +18,10 @@ vagrant plugin license vagrant-vmware-desktop ~/license.lic
     * in vim run ':PlugInstall'
 * coloscheme: <https://raw.githubusercontent.com/jnurmine/Zenburn/master/colors/zenburn.vim>
 
+## iterm2 fonts (e.g. lsd)
+
+* <https://github.com/Peltoche/lsd/issues/199>
+
 
 ## dnscryp
 * `brew install dnscrypt-proxy`
