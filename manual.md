@@ -7,10 +7,13 @@ vagrant plugin install vagrant-vmware-desktop
 vagrant plugin license vagrant-vmware-desktop ~/license.lic
 ```
 
-## if Laptop/Macbook
+## if Macbook with touch bar
 `brew install haptic-touch-bar`
 
-## vi
+## fzf
+`(brew --prefix)/opt/fzf/install` created .fzf.bash and .fzf.zsh
+
+## neovim
 * Install Vim-Plug plugin manager
     ```bash
     curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
