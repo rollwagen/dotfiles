@@ -14,6 +14,7 @@ function doSynch() {
 		--exclude "macos.sh" \
 		--exclude "delta.sh" \
 		--exclude "manual.md" \
+		--exclude "ubuntu.sh" \
 		-avh . ~
 }
 
