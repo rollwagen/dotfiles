@@ -12,10 +12,12 @@ vagrant plugin license vagrant-vmware-desktop ~/license.lic
 
 ## vi
 * Install Vim-Plug plugin manager
-```bash
-curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-```
-* in vim run ':PlugInstall'
+    ```bash
+    curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    ```
+    * in vim run ':PlugInstall'
+* coloscheme: <https://raw.githubusercontent.com/jnurmine/Zenburn/master/colors/zenburn.vim>
+
 
 ## dnscryp
 * `brew install dnscrypt-proxy`
@@ -38,14 +40,14 @@ curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.c
 ### Extentions
 * [uBlockOrigin](https://chrome.google.com/webstore/detail/ublock-origin/cjpalhdlnbpafiamejdnhcphjbkeiagm)
 * _HTTPS Everywhere_ | [https://chrome.google.com/webstore/detail/https-everywhere/gcbommkclmclpchllfjekcdonpmejbdp]
-* _LastPass_ 
+* _LastPass_
 
 ### Settings
 
 * _Review Security Setting_ chrome://settings/security
 * _Cookie Setting_ chrome://settings/cookies?search=Privacy
-	* Block Third Party Cookies
-	* Send a 'Do Not Track'
+    * Block Third Party Cookies
+    * Send a 'Do Not Track'
 * Setting -> 'Zoom' -> Page Zoom default to 90%
 
 ## Browser: Firefox
@@ -56,6 +58,6 @@ curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.c
 
 ### Settings
 * _Enhanced Tracking Protection_ `about:preferences#privacy`
-	* Strict
-	* Send web sites a "Do Not Track" 
+    * Strict
+      * Send web sites a "Do Not Track"
 
