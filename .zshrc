@@ -124,7 +124,7 @@ GCSDK_COMPL_ZSH="/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/co
 [ -f /usr/bin/aws_completer ] && complete -C '/usr/bin/aws_completer' aws
 [ -f /usr/local/aws-cli/v2/current/bin/aws_completer ] && complete -C '/usr/local/aws-cli/v2/current/bin/aws_completer' aws
 
-eval "$(/opt/homebrew/bin/brew shellenv)"
+eval "$(/usr/local/bin/brew shellenv)"
 # Alacritty not available via brew on Apple Silicon
 [ -f ~/.cargo/bin/alacritty ] && alias alacritty=~/.cargo/bin/alacritty
 
