@@ -89,6 +89,9 @@ brew install less
 brew install colordiff
 brew install curl
 
+brew install node
+brew install yarn
+
 # Public Clouds
 brew install azure-cli
 brew install google-cloud-sdk
@@ -114,6 +117,7 @@ brew install "iterm2"
 brew install "alacritty"
 brew tap homebrew/cask-fonts
 brew install font-fira-code-nerd-font
+brew install font-hack-nerd-font
 
 brew install "visual-studio-code"
 brew install "vagrant"
