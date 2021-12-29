@@ -29,6 +29,7 @@ set smartcase " ...be smart about intential uppercaseses
 set incsearch " highlight as typing
 set hlsearch " highlight all matches simultaneously
 set textwidth=80
+set termguicolors " enable 24bit colors
 
 colorscheme zenburn
 
@@ -47,10 +48,9 @@ call plug#begin('~/.vim/plugged')
         "autocmd FileType python setlocal completeopt-=preview
 
 
-	Plug 'tpope/vim-surround'
-	Plug 'tpope/vim-unimpaired'
-	Plug 'tpope/vim-commentary'
-
+        Plug 'tpope/vim-surround'
+        Plug 'tpope/vim-unimpaired'
+        Plug 'tpope/vim-commentary'
 
         " Syntax highlighting for Powershell
         Plug 'pprovost/vim-ps1'
@@ -61,14 +61,14 @@ call plug#begin('~/.vim/plugged')
 
         Plug 'vim-syntastic/syntastic'
 
-        " Vim Wiki - https://github.com/vimwiki/vimwiki 
+        " Vim Wiki - https://github.com/vimwiki/vimwiki
         " Plug 'vimwiki/vimwiki', { 'on': [] } "turned off
 
         " Airline - status/tabline plugin https://github.com/vim-airline/vim-airline
         Plug 'vim-airline/vim-airline'
         Plug 'vim-airline/vim-airline-themes'
 
-	" Plug 'tc50cal/vim-terminal'
+        " Plug 'tc50cal/vim-terminal'
 
 call plug#end()
 
@@ -82,7 +82,7 @@ let g:airline_theme='luna'
 " field doesn't dynamically extend/shrink so much e.g. %v% --> %3v%
 let g:airline_section_z='%p%%%#__accent_bold#%{g:airline_symbols.linenr}%3l%#__restore__#%#__accent_bold#/%3L%{g:airline_symbols.maxlinenr}%#__restore__#%#__accent_bold#%{g:airline_symbols.colnr}%3v%#__restore__#'
 if !exists('g:airline_symbols')
-	let g:airline_symbols = {}
+        let g:airline_symbols = {}
 endif
 let g:airline_symbols.colnr = ''
 let g:airline_symbols.maxlinenr = 'Ξ'
