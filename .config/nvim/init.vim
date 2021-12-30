@@ -11,6 +11,7 @@ call plug#begin('~/.vim/plugged')
         Plug 'tpope/vim-surround'
         Plug 'tpope/vim-unimpaired'
         Plug 'tpope/vim-commentary'
+        Plug 'tpope/vim-fugitive'
         Plug 'sheerun/vim-polyglot'
         Plug 'vim-syntastic/syntastic'
         Plug 'vim-airline/vim-airline'
@@ -31,6 +32,10 @@ call plug#begin('~/.vim/plugged')
         Plug 'morhetz/gruvbox'
         Plug 'sheerun/vim-polyglot'
 
+        " https://github.com/lewis6991/gitsigns.nvim
+        Plug 'nvim-lua/plenary.nvim'
+        Plug 'lewis6991/gitsigns.nvim'
+
 call plug#end()
 
 colorscheme gruvbox
@@ -39,6 +44,9 @@ hi Normal guibg=NONE ctermbg=NONE
 
 " vim-polyglot
 set conceallevel=0 "0 -> Text is shown normally
+
+" gitsigns
+lua require('gitsigns').setup()
 
 " Lsp finding/error navigation
 " see also <https://github.com/nvim-lua/diagnostic-nvim/issues/73>
