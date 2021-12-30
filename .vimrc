@@ -13,7 +13,8 @@ set encoding=UTF-8
 set smarttab " preserve indentation for newline
 set autoindent
 set expandtab " tab -> spaces
-set nowrap " no line wrapping
+set nowrap " do not automatically wrap on load
+set formatoptions-=t " do not automatically wrap text when typing
 set number " show numbers
 " set relativenumber
 set splitbelow
