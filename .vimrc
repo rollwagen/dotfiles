@@ -31,7 +31,9 @@ set hlsearch " highlight all matches simultaneously
 set textwidth=80
 set termguicolors " enable 24bit colors
 
-colorscheme zenburn
+colorscheme zenburn " enable transparency; needs to be after colorscheme!
+hi Normal guibg=NONE ctermbg=NONE
+
 
 " Make `jj` and `jk` throw you into normal mode
 " https://csswizardry.com/2017/01/preparing-vim-for-apples-touch-bar/
@@ -46,7 +48,6 @@ call plug#begin('~/.vim/plugged')
 
         "Plug 'davidhalter/jedi-vim'
         "autocmd FileType python setlocal completeopt-=preview
-
 
         Plug 'tpope/vim-surround'
         Plug 'tpope/vim-unimpaired'
@@ -68,7 +69,7 @@ call plug#begin('~/.vim/plugged')
         Plug 'vim-airline/vim-airline'
         Plug 'vim-airline/vim-airline-themes'
 
-        " Plug 'tc50cal/vim-terminal'
+        "Plug 'tc50cal/vim-terminal'
 
 call plug#end()
 

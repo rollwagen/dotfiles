@@ -7,33 +7,51 @@ source ~/.vimrc
 " - For Neovim: stdpath('data') . '/plugged'
 call plug#begin('~/.vim/plugged')
 
-        " Plugins shared with vim
-        " need to define here too
-	Plug 'tpope/vim-surround'
-	Plug 'tpope/vim-unimpaired'
-	Plug 'tpope/vim-commentary'
-        Plug 'pprovost/vim-ps1'
+        " Plugins shared with vim need to define here too
+        Plug 'tpope/vim-surround'
+        Plug 'tpope/vim-unimpaired'
+        Plug 'tpope/vim-commentary'
+        Plug 'sheerun/vim-polyglot'
         Plug 'vim-syntastic/syntastic'
         Plug 'vim-airline/vim-airline'
         Plug 'vim-airline/vim-airline-themes'
+        " Plug 'pprovost/vim-ps1'
 
 
-	" Plug 'neoclide/coc.nvim', {'branch': 'master', 'do': 'yarn install --frozen-lockfile'}
+        " Plug 'neoclide/coc.nvim', {'branch': 'master', 'do': 'yarn install --frozen-lockfile'}
 
-        " nvim-cmp recommended settings as per
-	Plug 'neovim/nvim-lspconfig'
-	Plug 'hrsh7th/nvim-cmp'
-	Plug 'hrsh7th/cmp-nvim-lsp'
-	Plug 'hrsh7th/cmp-buffer'
+        " nvim-cmp
+        Plug 'neovim/nvim-lspconfig'
+        Plug 'hrsh7th/nvim-cmp'
+        Plug 'hrsh7th/cmp-nvim-lsp'
+        Plug 'hrsh7th/cmp-buffer'
 
-	Plug 'lukas-reineke/indent-blankline.nvim' " show indentation guides 
+        Plug 'lukas-reineke/indent-blankline.nvim' " show indentation guides
+
+        Plug 'morhetz/gruvbox'
+        Plug 'sheerun/vim-polyglot'
 
 call plug#end()
 
+colorscheme gruvbox
+" enable transparency; needs to be after colorscheme!
+hi Normal guibg=NONE ctermbg=NONE
+
+" vim-polyglot
+set conceallevel=0 "0 -> Text is shown normally
+
+" Lsp finding/error navigation
+" see also <https://github.com/nvim-lua/diagnostic-nvim/issues/73>
+map <leader>n :lua vim.lsp.diagnostic.goto_next()<cr>
+map <leader>p :lua vim.lsp.diagnostic.goto_prev()<cr>
+
 " nvim-cmp recommended settings as per
 " https://github.com/hrsh7th/nvim-cmp
-set completeopt=menu,menuone,noselect 
+set completeopt=menu,menuone,noselect
 lua <<EOF
+
+  -- vim.diagnostic.config({virtual_text = false})
+
   -- Setup nvim-cmp.
   local cmp = require'cmp'
 
@@ -41,7 +59,7 @@ lua <<EOF
     snippet = {
       -- REQUIRED - you must specify a snippet engine
       expand = function(args)
-        vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
+        -- vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
         -- require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
         -- require('snippy').expand_snippet(args.body) -- For `snippy` users.
         -- vim.fn["UltiSnips#Anon"](args.body) -- For `ultisnips` users.
@@ -85,10 +103,14 @@ lua <<EOF
     })
   })
 
-  -- Setup lspconfig.
+  -- Setup lspconfig - see https://github.com/neovim/nvim-lspconfig/wiki/Autocompletion#nvim-cmp
+  local lspconfig = require('lspconfig')
   local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
-  -- Replace <YOUR_LSP_SERVER> with each lsp server you've enabled.
-  require('lspconfig')['<YOUR_LSP_SERVER>'].setup {
-    capabilities = capabilities
-  }
+  local servers = { 'pyright', 'tflint', 'terraformls' }
+  for _, lsp in ipairs(servers) do
+     lspconfig[lsp].setup {
+       capabilities = capabilities,
+     }
+   end
 EOF
+
