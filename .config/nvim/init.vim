@@ -39,8 +39,14 @@ call plug#begin('~/.vim/plugged')
 call plug#end()
 
 colorscheme gruvbox
-" enable transparency; needs to be after colorscheme!
-hi Normal guibg=NONE ctermbg=NONE
+hi Normal guibg=NONE ctermbg=NONE " transparency (be after colorscheme)
+
+" spelling / spellcheck
+" toggle spelling: :set spell!
+" next:  [s   add to spellfile: zg  correct/candidates:  z=
+set spelllang=en
+set spellsuggest=best,4 " show four pell checking candidates max
+
 
 " vim-polyglot
 set conceallevel=0 "0 -> Text is shown normally
