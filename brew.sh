@@ -14,7 +14,7 @@ fi
 
 # Install an up-to-date version of Bash
 # and Bash close tools.
-brew install bash
+brew install 'bash'
 brew install bash-completion2
 
 brew install ccat
@@ -61,6 +61,10 @@ brew install terraform
 brew install terrascan
 brew install terraform-docs
 brew install volatility
+
+# Linter, checkers etc
+brew install markdownlint-cli
+brew install tflint
 
 # Docker and Kubernetes.
 brew install docker-completion
