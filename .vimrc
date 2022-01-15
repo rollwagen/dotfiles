@@ -13,8 +13,8 @@ set encoding=UTF-8
 set smarttab " preserve indentation for newline
 set autoindent
 set expandtab " tab -> spaces
-set nowrap " do not automatically wrap on load
-set formatoptions-=t " do not automatically wrap text when typing
+set nowrap " no line wrapping
+set formatoptions-=t 
 set number " show numbers
 " set relativenumber
 set splitbelow
@@ -53,6 +53,7 @@ call plug#begin('~/.vim/plugged')
         Plug 'tpope/vim-surround'
         Plug 'tpope/vim-unimpaired'
         Plug 'tpope/vim-commentary'
+        Plug 'tpope/vim-fugitive'
 
         " Syntax highlighting for Powershell
         Plug 'pprovost/vim-ps1'
@@ -93,6 +94,8 @@ let g:airline_symbols.linenr = ' '
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#buffer_nr_show = 1
 
+let g:airline#extensions#branch#enabled=1
+let g:airline#extensions#hunks#enabled=0
 
 "
 " Rust plugin options
@@ -121,6 +124,7 @@ let g:syntastic_check_on_open = 0
 let g:syntastic_check_on_wq = 0
 
 let g:syntastic_python_checkers = ['flake8', 'mypy']
+let g:syntastic_yaml_checkers = [ "yamllint" ]
 
 let g:syntastic_markdown_mdl_exec = "markdownlint"
 let g:syntastic_markdown_mdl_args = ""
