@@ -35,6 +35,7 @@ call plug#begin('~/.vim/plugged')
         " https://github.com/lewis6991/gitsigns.nvim
         Plug 'nvim-lua/plenary.nvim'
         Plug 'lewis6991/gitsigns.nvim'
+        Plug 'akinsho/toggleterm.nvim'
 
 call plug#end()
 
@@ -47,17 +48,24 @@ hi Normal guibg=NONE ctermbg=NONE " transparency (be after colorscheme)
 set spelllang=en
 set spellsuggest=best,4 " show four pell checking candidates max
 
-
 " vim-polyglot
 set conceallevel=0 "0 -> Text is shown normally
 
 " gitsigns
 lua require('gitsigns').setup()
 
+" toggleterm - see <https://github.com/akinsho/toggleterm.nvim>
+lua require("toggleterm").setup{ open_mapping = [[<c-\>]] }
+
 " Lsp finding/error navigation
 " see also <https://github.com/nvim-lua/diagnostic-nvim/issues/73>
-map <leader>n :lua vim.lsp.diagnostic.goto_next()<cr>
-map <leader>p :lua vim.lsp.diagnostic.goto_prev()<cr>
+" map <leader>p :lua vim.lsp.diagnostic.goto_prev()<cr>
+" map <leader>p :lua vim.lsp.diagnostic.get_prev({})<cr>
+" map <leader>n :lua vim.lsp.diagnostic.goto_next()<cr>
+" map <leader>n :lua vim.lsp.diagnostic.get_next()<cr>
+map <leader>n :lua vim.diagnostic.goto_next({ float =  { border = "single" }})<cr>
+map <leader>p :lua vim.diagnostic.goto_prev({ float =  { border = "single" }})<cr>
+map <leader>r :lua vim.lsp.buf.rename()<cr>
 
 " nvim-cmp recommended settings as per
 " https://github.com/hrsh7th/nvim-cmp
@@ -120,7 +128,8 @@ lua <<EOF
   -- Setup lspconfig - see https://github.com/neovim/nvim-lspconfig/wiki/Autocompletion#nvim-cmp
   local lspconfig = require('lspconfig')
   local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
-  local servers = { 'pyright', 'tflint', 'terraformls' }
+  local servers = { 'pyright', 'tflint', 'terraformls', 'gopls' }
+  -- local servers = { 'pyright', 'tflint' }
   for _, lsp in ipairs(servers) do
      lspconfig[lsp].setup {
        capabilities = capabilities,
