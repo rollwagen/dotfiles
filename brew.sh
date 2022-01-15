@@ -44,6 +44,7 @@ brew install suricata
 brew install telnet
 brew install bettercap
 brew install hex-fiend
+brew install volatility
 
 brew install openvpn
 brew install dnscrypt-proxy
@@ -57,14 +58,17 @@ brew install p7zip
 
 # IaC tools
 brew install packer
+
+# Terraform
 brew install terraform
 brew install terrascan
 brew install terraform-docs
-brew install volatility
+brew install tflint
+brew install tfsec
 
 # Linter, checkers etc
 brew install markdownlint-cli
-brew install tflint
+brew install yamllint
 
 # Docker and Kubernetes.
 brew install docker-completion
