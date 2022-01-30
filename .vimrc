@@ -3,10 +3,10 @@
 filetype plugin on
 filetype plugin indent on
 
-
 " see also https://github.com/tpope/vim-sensible/blob/master/plugin/sensible.vim
 set nocompatible " default for nvim
 syntax on " enable syntax highlighting
+set hidden " hides buffers instead of closing them
 set backspace=indent,eol,start
 set fileformat=unix " when using on windows
 set encoding=UTF-8
@@ -31,6 +31,7 @@ set incsearch " highlight as typing
 set hlsearch " highlight all matches simultaneously
 set textwidth=80
 set termguicolors " enable 24bit colors
+" set pastetoggle=<F2> " paste mode (autoindent); '<C-r>+' for OS paste
 
 colorscheme zenburn " enable transparency; needs to be after colorscheme!
 hi Normal guibg=NONE ctermbg=NONE
