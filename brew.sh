@@ -126,6 +126,7 @@ brew install "alacritty"
 brew tap homebrew/cask-fonts
 brew install font-fira-code-nerd-font
 brew install font-hack-nerd-font
+brew install font-jetbrains-mono-nerd-font
 
 brew install "visual-studio-code"
 brew install "vagrant"
