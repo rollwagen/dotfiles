@@ -16,9 +16,8 @@ call plug#begin('~/.vim/plugged')
         Plug 'vim-syntastic/syntastic'
         Plug 'vim-airline/vim-airline'
         Plug 'vim-airline/vim-airline-themes'
-        " Plug 'pprovost/vim-ps1'
 
-
+        " Plug 'pprovost/vim-ps1' " Powershell syntax highlighting
         " Plug 'neoclide/coc.nvim', {'branch': 'master', 'do': 'yarn install --frozen-lockfile'}
 
         " nvim-cmp
@@ -29,10 +28,9 @@ call plug#begin('~/.vim/plugged')
 
         Plug 'lukas-reineke/indent-blankline.nvim' " show indentation guides
 
-        Plug 'morhetz/gruvbox'
-        Plug 'sheerun/vim-polyglot'
+        Plug 'morhetz/gruvbox' " color scheme
+        Plug 'sheerun/vim-polyglot' " collection of language packs
 
-        " https://github.com/lewis6991/gitsigns.nvim
         Plug 'nvim-lua/plenary.nvim'
         Plug 'lewis6991/gitsigns.nvim'
         Plug 'akinsho/toggleterm.nvim'
@@ -40,10 +38,12 @@ call plug#begin('~/.vim/plugged')
 call plug#end()
 
 colorscheme gruvbox
-hi Normal guibg=NONE ctermbg=NONE " transparency (be after colorscheme)
+hi Normal guibg=NONE ctermbg=NONE "transparency (after colorscheme!)
 
-" spelling / spellcheck
-" toggle spelling: :set spell!
+" indent-blankline - https://github.com/lukas-reineke/indent-blankline.nvim
+lua require("indent_blankline").setup { }
+
+" spelling / spellcheck - toggle spelling: :set spell!
 " next:  [s   add to spellfile: zg  correct/candidates:  z=
 set spelllang=en
 set spellsuggest=best,4 " show four pell checking candidates max
@@ -66,6 +66,7 @@ lua require("toggleterm").setup{ open_mapping = [[<c-\>]] }
 map <leader>n :lua vim.diagnostic.goto_next({ float =  { border = "single" }})<cr>
 map <leader>p :lua vim.diagnostic.goto_prev({ float =  { border = "single" }})<cr>
 map <leader>r :lua vim.lsp.buf.rename()<cr>
+map <leader>K :lua vim.lsp.buf.hover()<cr>
 
 " nvim-cmp recommended settings as per
 " https://github.com/hrsh7th/nvim-cmp
