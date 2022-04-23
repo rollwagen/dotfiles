@@ -10,13 +10,19 @@
 	helper = cache --timeout=3600
 
 [core]
-	editor = vim
+	editor = nvim
 	pager = delta
 
 [alias]
+	c = commit
+	p = push
+	pp = pull --prune
 	s = status --short --branch
-	cma = commit --all -m
-	l = log --pretty='%C(yellow)%h%C(reset) | %C(red)%d%Creset %C(cyan)%s%C(reset) %C(green)(%cr)%C(reset)' --graph --max-count=20
+	co = checkout
+	br = branch --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(contents:subject) %(color:green)(%(committerdate:relative)) [%(authorname)]' --sort=-committerdate
+	ca = commit --all
+	l = log --pretty='%C(yellow)%h%C(reset) | %C(red)%d%Creset %C(cyan)%s%C(reset) %C(green)(%cs)%C(reset) %an' --graph --max-count=12
+	# l = log --pretty='%C(yellow)%h%C(reset) | %C(red)%d%Creset %C(cyan)%s%C(reset) %C(green)(%cr)%C(reset)' --graph --max-count=20
 	diff-prose = diff --word-diff --unified=10
 	unstage = reset HEAD
 
