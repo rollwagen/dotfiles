@@ -29,16 +29,27 @@ call plug#begin('~/.vim/plugged')
         Plug 'lukas-reineke/indent-blankline.nvim' " show indentation guides
 
         Plug 'morhetz/gruvbox' " color scheme
+        Plug 'ghifarit53/tokyonight-vim' " color scheme
+        Plug 'rebelot/kanagawa.nvim' " color scheme
         Plug 'sheerun/vim-polyglot' " collection of language packs
 
         Plug 'nvim-lua/plenary.nvim'
         Plug 'lewis6991/gitsigns.nvim'
         Plug 'akinsho/toggleterm.nvim'
 
+        Plug 'psliwka/vim-smoothie'
+
+        Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+        Plug 'junegunn/fzf.vim'
+
 call plug#end()
 
-colorscheme gruvbox
+colorscheme kanagawa
 hi Normal guibg=NONE ctermbg=NONE "transparency (after colorscheme!)
+
+" fzf
+let g:fzf_preview_window = ['right:55%']
+" let g:fzf_preview_window = ['up:60%']
 
 " indent-blankline - https://github.com/lukas-reineke/indent-blankline.nvim
 lua require("indent_blankline").setup { }

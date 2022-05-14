@@ -11,6 +11,8 @@ export ZSH=~/.oh-my-zsh
 #source $ZSH/plugins/git/git.plugin.zsh
 
 ZSH_THEME="robbyrussell"
+#ZSH_THEME="agnoster"
+# ZSH_THEME="agitnoster"
 
 plugins=(git docker docker-compose)
 
@@ -74,7 +76,7 @@ ZSH_HIGHLIGHT_HIGHLIGHTERS_FILE=/usr/share/zsh-syntax-highlighting/zsh-syntax-hi
 #  export ZSH_HIGHLIGHT_HIGHLIGHTERS_DIR=/usr/local/share/zsh-syntax-highlighting/highlighters
 
 # kubectl autocomplete - see  https://kubernetes.io/docs/reference/kubectl/cheatsheet/
-[[ -f /usr/local/bin/kubectl ]] && source <(kubectl completion zsh)
+[[ kubectl ]] && source <(kubectl completion zsh)
 
 # iTerm2 shell integration
 [ -f ~/.iterm2_shell_integration.zsh ] && source ~/.iterm2_shell_integration.zsh
@@ -123,8 +125,9 @@ GCSDK_COMPL_ZSH="/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/co
 [ -f /usr/local/bin/aws_completer ] && complete -C '/usr/local/bin/aws_completer' aws
 [ -f /usr/bin/aws_completer ] && complete -C '/usr/bin/aws_completer' aws
 [ -f /usr/local/aws-cli/v2/current/bin/aws_completer ] && complete -C '/usr/local/aws-cli/v2/current/bin/aws_completer' aws
+[ -f /opt/homebrew/bin/aws_completer ] && complete -C '/opt/homebrew/bin/aws_completer' aws
 
-eval "$(/usr/local/bin/brew shellenv)"
+eval "$(/opt/homebrew/bin/brew shellenv)"
 # Alacritty not available via brew on Apple Silicon
 [ -f ~/.cargo/bin/alacritty ] && alias alacritty=~/.cargo/bin/alacritty
 
@@ -145,3 +148,17 @@ fi
 if type "lsd" > /dev/null; then
   alias ls=lsd
 fi
+
+autoload -U +X bashcompinit && bashcompinit
+complete -o nospace -C /opt/homebrew/bin/terraform terraform
+
+export SSH_AUTH_SOCK=/Users/rollwagen/Library/Containers/com.maxgoedjen.Secretive.SecretAgent/Data/socket.ssh
+
+# enable broot - https://dystroy.org/broot/
+source /Users/rollwagen/.config/broot/launcher/bash/br
+
+# gco = git checkout using fzf
+function fn_git_checkout() {
+  branch=$(git branch --all  | fzf | sed "s/remotes\/origin\///" | xargs); git checkout $branch
+}
+alias gco='fn_git_checkout'
