@@ -6,9 +6,9 @@ source ~/.vimrc
 " Specify a directory for plugins
 " - For Neovim: stdpath('data') . '/plugged'
 call plug#begin('~/.vim/plugged')
+        Plug 'preservim/nerdtree'
 
-        " Plugins shared with vim need to define here too
-        Plug 'tpope/vim-surround'
+        " Plugins shared with vim need to define here too Plug 'tpope/vim-surround'
         Plug 'tpope/vim-unimpaired'
         Plug 'tpope/vim-commentary'
         Plug 'tpope/vim-fugitive'
@@ -22,15 +22,22 @@ call plug#begin('~/.vim/plugged')
 
         " nvim-cmp
         Plug 'neovim/nvim-lspconfig'
-        Plug 'hrsh7th/nvim-cmp'
         Plug 'hrsh7th/cmp-nvim-lsp'
         Plug 'hrsh7th/cmp-buffer'
+        Plug 'hrsh7th/cmp-path'
+        Plug 'hrsh7th/cmp-cmdline'
+        Plug 'hrsh7th/nvim-cmp'
+        " For luasnip users.
+        Plug 'L3MON4D3/LuaSnip'
+        Plug 'saadparwaiz1/cmp_luasnip'
 
         Plug 'lukas-reineke/indent-blankline.nvim' " show indentation guides
 
         Plug 'morhetz/gruvbox' " color scheme
         Plug 'ghifarit53/tokyonight-vim' " color scheme
         Plug 'rebelot/kanagawa.nvim' " color scheme
+        Plug 'marko-cerovac/material.nvim'
+
         Plug 'sheerun/vim-polyglot' " collection of language packs
 
         Plug 'nvim-lua/plenary.nvim'
@@ -45,7 +52,9 @@ call plug#begin('~/.vim/plugged')
 call plug#end()
 
 colorscheme kanagawa
-hi Normal guibg=NONE ctermbg=NONE "transparency (after colorscheme!)
+highlight Normal guibg=NONE ctermbg=NONE  " transparency (after colorscheme!)
+highlight WinSeparator guibg=None
+set laststatus=3
 
 " fzf
 let g:fzf_preview_window = ['right:55%']
@@ -76,44 +85,43 @@ lua require("toggleterm").setup{ open_mapping = [[<c-\>]] }
 " map <leader>n :lua vim.lsp.diagnostic.get_next()<cr>
 map <leader>n :lua vim.diagnostic.goto_next({ float =  { border = "single" }})<cr>
 map <leader>p :lua vim.diagnostic.goto_prev({ float =  { border = "single" }})<cr>
-map <leader>r :lua vim.lsp.buf.rename()<cr>
-map <leader>K :lua vim.lsp.buf.hover()<cr>
+map <leader>lr :lua vim.lsp.buf.rename()<cr>
+map <leader>lh :lua vim.lsp.buf.hover()<cr>
+map <leader>lsh :lua vim.lsp.buf.signature_help()<cr>
 
 " nvim-cmp recommended settings as per
 " https://github.com/hrsh7th/nvim-cmp
 set completeopt=menu,menuone,noselect
+
 lua <<EOF
-
-  -- vim.diagnostic.config({virtual_text = false})
-
   -- Setup nvim-cmp.
   local cmp = require'cmp'
 
   cmp.setup({
-    snippet = {
+     snippet = {
       -- REQUIRED - you must specify a snippet engine
-      expand = function(args)
+       expand = function(args)
         -- vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
-        -- require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
+        require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
         -- require('snippy').expand_snippet(args.body) -- For `snippy` users.
         -- vim.fn["UltiSnips#Anon"](args.body) -- For `ultisnips` users.
-      end,
-    },
-    mapping = {
-      ['<C-b>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), { 'i', 'c' }),
-      ['<C-f>'] = cmp.mapping(cmp.mapping.scroll_docs(4), { 'i', 'c' }),
-      ['<C-Space>'] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c' }),
-      ['<C-y>'] = cmp.config.disable, -- Specify `cmp.config.disable` if you want to remove the default `<C-y>` mapping.
-      ['<C-e>'] = cmp.mapping({
-        i = cmp.mapping.abort(),
-        c = cmp.mapping.close(),
-      }),
-      ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
-    },
+       end,
+     },
+     window = {
+      -- completion = cmp.config.window.bordered(),
+      -- documentation = cmp.config.window.bordered(),
+     },
+    mapping = cmp.mapping.preset.insert({
+      ['<C-b>'] = cmp.mapping.scroll_docs(-4),
+      ['<C-f>'] = cmp.mapping.scroll_docs(4),
+      ['<C-Space>'] = cmp.mapping.complete(),
+      ['<C-e>'] = cmp.mapping.abort(),
+      ['<CR>'] = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Insert, select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+    }),
     sources = cmp.config.sources({
-         { name = 'nvim_lsp' },
+      { name = 'nvim_lsp' },
       -- { name = 'vsnip' }, -- For vsnip users.
-      -- { name = 'luasnip' }, -- For luasnip users.
+      { name = 'luasnip' }, -- For luasnip users.
       -- { name = 'ultisnips' }, -- For ultisnips users.
       -- { name = 'snippy' }, -- For snippy users.
     }, {
@@ -121,8 +129,18 @@ lua <<EOF
     })
   })
 
+  -- Set configuration for specific filetype.
+  cmp.setup.filetype('gitcommit', {
+    sources = cmp.config.sources({
+      { name = 'cmp_git' }, -- You can specify the `cmp_git` source if you were installed it.
+    }, {
+      { name = 'buffer' },
+    })
+  })
+
   -- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).
   cmp.setup.cmdline('/', {
+    mapping = cmp.mapping.preset.cmdline(),
     sources = {
       { name = 'buffer' }
     }
@@ -130,6 +148,7 @@ lua <<EOF
 
   -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
   cmp.setup.cmdline(':', {
+    mapping = cmp.mapping.preset.cmdline(),
     sources = cmp.config.sources({
       { name = 'path' }
     }, {
@@ -138,14 +157,14 @@ lua <<EOF
   })
 
   -- Setup lspconfig - see https://github.com/neovim/nvim-lspconfig/wiki/Autocompletion#nvim-cmp
-  local lspconfig = require('lspconfig')
-  local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+  -- Replace <YOUR_LSP_SERVER> with each lsp server you've enabled.
   local servers = { 'pyright', 'tflint', 'terraformls', 'gopls' }
   -- local servers = { 'pyright', 'tflint' }
+  local lspconfig = require('lspconfig')
+  local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
   for _, lsp in ipairs(servers) do
      lspconfig[lsp].setup {
        capabilities = capabilities,
      }
-   end
+  end
 EOF
-
