@@ -6,7 +6,11 @@ source ~/.vimrc
 " Specify a directory for plugins
 " - For Neovim: stdpath('data') . '/plugged'
 call plug#begin('~/.vim/plugged')
-        Plug 'preservim/nerdtree'
+
+        Plug 'jose-elias-alvarez/null-ls.nvim' " vale
+
+        Plug 'kyazdani42/nvim-web-devicons' " trouble plugin
+        Plug 'folke/trouble.nvim'  " trouble plugin
 
         " Plugins shared with vim need to define here too Plug 'tpope/vim-surround'
         Plug 'tpope/vim-unimpaired'
@@ -40,7 +44,7 @@ call plug#begin('~/.vim/plugged')
 
         Plug 'sheerun/vim-polyglot' " collection of language packs
 
-        Plug 'nvim-lua/plenary.nvim'
+        Plug 'nvim-lua/plenary.nvim' "  lua functions collection
         Plug 'lewis6991/gitsigns.nvim'
         Plug 'akinsho/toggleterm.nvim'
 
@@ -68,11 +72,30 @@ lua require("indent_blankline").setup { }
 set spelllang=en
 set spellsuggest=best,4 " show four pell checking candidates max
 
+" vale setup - https://bhupesh.me/writing-like-a-pro-with-vale-and-neovim/
+lua << EOF
+require("null-ls").setup({
+    sources = {
+        require("null-ls").builtins.diagnostics.vale,
+    },
+})
+EOF
+
+" trouble.nvim - https://github.com/folke/trouble.nvim
+lua << EOF
+  require("trouble").setup { }
+EOF
+
 " vim-polyglot
 set conceallevel=0 "0 -> Text is shown normally
 
-" gitsigns
+" gitsigns - https://github.com/lewis6991/gitsigns.nvim
+"   see also https://github.com/lewis6991/gitsigns.nvim/issues/498
 lua require('gitsigns').setup()
+map <leader>gp :Gitsigns preview_hunk<cr>
+map <leader>gb :Gitsigns blame_line full=true<cr>
+map <leader>gd :Gitsigns diffthis<cr>
+" map('n', '<leader>gD', function() gs.diffthis('~') end)
 
 " toggleterm - see <https://github.com/akinsho/toggleterm.nvim>
 lua require("toggleterm").setup{ open_mapping = [[<c-\>]] }
