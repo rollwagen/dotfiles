@@ -13,18 +13,26 @@
 	editor = nvim
 	pager = delta
 
+[rebase]
+	autostash = true
+
 [alias]
 	c = commit
-	p = push
-	pp = pull --prune
+	; pp = pull --prune
 	s = status --short --branch
 	co = checkout
+	co- = checkout -
+	cob = checkout -b
 	br = branch --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(contents:subject) %(color:green)(%(committerdate:relative)) [%(authorname)]' --sort=-committerdate
 	ca = commit --all
 	l = log --pretty='%C(yellow)%h%C(reset) | %C(red)%d%Creset %C(cyan)%s%C(reset) %C(green)(%cs)%C(reset) %an' --graph --max-count=12
-	# l = log --pretty='%C(yellow)%h%C(reset) | %C(red)%d%Creset %C(cyan)%s%C(reset) %C(green)(%cr)%C(reset)' --graph --max-count=20
+	# = log --pretty='%C(yellow)%h%C(reset) | %C(red)%d%Creset %C(cyan)%s%C(reset) %C(green)(%cr)%C(reset)' --graph --max-count=20
 	diff-prose = diff --word-diff --unified=10
+	d = diff
 	unstage = reset HEAD
+	update = !git pull --rebase --prune $@ && git submodule update --init --recursive
+  pushbranch = !git push -u origin $(git rev-parse --abbrev-ref HEAD)
+	p = push
 
 [diff]
 	algorithm = histogram
@@ -36,7 +44,7 @@
 	plus-style = "syntax #012800"
 	minus-style = "syntax #340001"
 	# syntax-theme = Monokai Extended / gruvbox-dark
-	syntax-theme = zenburn 
+	syntax-theme = zenburn
 	navigate = true
 	side-by-side = true
 
