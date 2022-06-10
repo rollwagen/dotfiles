@@ -16,23 +16,28 @@
 [rebase]
 	autostash = true
 
+[pull]
+	rebase = true
+
 [alias]
 	c = commit
-	; pp = pull --prune
+	pp = pull --prune
+	update = !git pull --rebase --prune $@ && git submodule update --init --recursive
 	s = status --short --branch
 	co = checkout
 	co- = checkout -
 	cob = checkout -b
-	br = branch --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(contents:subject) %(color:green)(%(committerdate:relative)) [%(authorname)]' --sort=-committerdate
+	br = branch --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(color:cyan)%(contents:subject) %(color:green)(%(committerdate:relative)) %(color:reset)[%(authorname)]' --sort=-committerdate
+	bra = br -a
 	ca = commit --all
-	l = log --pretty='%C(yellow)%h%C(reset) | %C(red)%d%Creset %C(cyan)%s%C(reset) %C(green)(%cs)%C(reset) %an' --graph --max-count=12
-	# = log --pretty='%C(yellow)%h%C(reset) | %C(red)%d%Creset %C(cyan)%s%C(reset) %C(green)(%cr)%C(reset)' --graph --max-count=20
+	l1 = log --pretty='%C(yellow)%h%C(reset) | %C(red)%d%Creset %C(cyan)%s%C(reset) %C(green)(%cs)%C(reset) %an' --graph --max-count=10
+	l2 = log --pretty='%C(yellow)%h%C(reset) | %C(red)%d%Creset %C(cyan)%s%C(reset) %C(green)(%cr)%C(reset)' --graph --max-count=20
+	l = l1
 	diff-prose = diff --word-diff --unified=10
 	d = diff
 	unstage = reset HEAD
-	update = !git pull --rebase --prune $@ && git submodule update --init --recursive
   pushbranch = !git push -u origin $(git rev-parse --abbrev-ref HEAD)
-	p = push
+  pushforce = !git push origin +$(git rev-parse --abbrev-ref HEAD)
 
 [diff]
 	algorithm = histogram
@@ -43,8 +48,7 @@
 [delta]
 	plus-style = "syntax #012800"
 	minus-style = "syntax #340001"
-	# syntax-theme = Monokai Extended / gruvbox-dark
-	syntax-theme = zenburn
+	syntax-theme = zenburn  # Monokai Extended / gruvbox-dark
 	navigate = true
 	side-by-side = true
 
