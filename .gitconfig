@@ -36,8 +36,8 @@
 	diff-prose = diff --word-diff --unified=10
 	d = diff
 	unstage = reset HEAD
-  pushbranch = !git push -u origin $(git rev-parse --abbrev-ref HEAD)
-  pushforce = !git push origin +$(git rev-parse --abbrev-ref HEAD)
+	pushbranch = !git push -u origin $(git rev-parse --abbrev-ref HEAD)
+	pushforce = !git push origin +$(git rev-parse --abbrev-ref HEAD)
 
 [diff]
 	algorithm = histogram
