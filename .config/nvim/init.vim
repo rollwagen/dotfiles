@@ -13,6 +13,7 @@ call plug#begin('~/.vim/plugged')
         Plug 'folke/trouble.nvim'  " trouble plugin
 
         " Plugins shared with vim need to define here too Plug 'tpope/vim-surround'
+        Plug 'tpope/vim-surround'
         Plug 'tpope/vim-unimpaired'
         Plug 'tpope/vim-commentary'
         Plug 'tpope/vim-fugitive'
@@ -22,7 +23,6 @@ call plug#begin('~/.vim/plugged')
         Plug 'vim-airline/vim-airline-themes'
 
         " Plug 'pprovost/vim-ps1' " Powershell syntax highlighting
-        " Plug 'neoclide/coc.nvim', {'branch': 'master', 'do': 'yarn install --frozen-lockfile'}
 
         " nvim-cmp
         Plug 'neovim/nvim-lspconfig'
@@ -34,13 +34,17 @@ call plug#begin('~/.vim/plugged')
         " For luasnip users.
         Plug 'L3MON4D3/LuaSnip'
         Plug 'saadparwaiz1/cmp_luasnip'
+        Plug 'rafamadriz/friendly-snippets'
 
-        Plug 'lukas-reineke/indent-blankline.nvim' " show indentation guides
+        "Plug 'tzachar/cmp-tabnine', { 'do': './install.sh' , 'requires': 'hrsh7th/nvim-cmp'}
 
+        " Color schemes
         Plug 'morhetz/gruvbox' " color scheme
         Plug 'ghifarit53/tokyonight-vim' " color scheme
         Plug 'rebelot/kanagawa.nvim' " color scheme
         Plug 'marko-cerovac/material.nvim'
+
+        Plug 'lukas-reineke/indent-blankline.nvim' " show indentation guides
 
         Plug 'sheerun/vim-polyglot' " collection of language packs
 
@@ -82,9 +86,13 @@ require("null-ls").setup({
 EOF
 
 " trouble.nvim - https://github.com/folke/trouble.nvim
-lua << EOF
-  require("trouble").setup { }
-EOF
+lua << LUA
+ require("trouble").setup {
+   mode = "document_diagnostics", -- "workspace_diagnostics", "document_diagnostics", "quickfix", "lsp_references", "loclist"
+ }
+LUA
+
+
 
 " vim-polyglot
 set conceallevel=0 "0 -> Text is shown normally
@@ -112,13 +120,24 @@ map <leader>lr :lua vim.lsp.buf.rename()<cr>
 map <leader>lh :lua vim.lsp.buf.hover()<cr>
 map <leader>lsh :lua vim.lsp.buf.signature_help()<cr>
 
-" nvim-cmp recommended settings as per
-" https://github.com/hrsh7th/nvim-cmp
+" nvim-cmp recommended settings as per https://github.com/hrsh7th/nvim-cmp
 set completeopt=menu,menuone,noselect
 
+
+
+"
+" nvim-cmp setup - see https://github.com/hrsh7th/nvim-cmp
+"
 lua <<EOF
+  local has_words_before = function()
+    local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+    return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
+  end
+
   -- Setup nvim-cmp.
-  local cmp = require'cmp'
+  require("luasnip.loaders.from_vscode").lazy_load()
+  local cmp = require("cmp")
+  local luasnip = require("luasnip")
 
   cmp.setup({
      snippet = {
@@ -140,13 +159,35 @@ lua <<EOF
       ['<C-Space>'] = cmp.mapping.complete(),
       ['<C-e>'] = cmp.mapping.abort(),
       ['<CR>'] = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Insert, select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+
+      -- luasnip mapping from https://github.com/hrsh7th/nvim-cmp/wiki/Example-mappings#luasnip
+      ["<Tab>"] = cmp.mapping(function(fallback)
+              if cmp.visible() then
+                cmp.select_next_item()
+              elseif luasnip.expand_or_jumpable() then
+                luasnip.expand_or_jump()
+              elseif has_words_before() then
+                cmp.complete()
+              else
+                fallback()
+              end
+       end, { "i", "s" }),
+
+      ["<S-Tab>"] = cmp.mapping(function(fallback)
+              if cmp.visible() then
+                cmp.select_prev_item()
+              elseif luasnip.jumpable(-1) then
+                luasnip.jump(-1)
+              else
+                fallback()
+              end
+      end, { "i", "s" }),
+
     }),
     sources = cmp.config.sources({
+      -- { name = 'cmp_tabnine' }, -- For tabnine
       { name = 'nvim_lsp' },
-      -- { name = 'vsnip' }, -- For vsnip users.
       { name = 'luasnip' }, -- For luasnip users.
-      -- { name = 'ultisnips' }, -- For ultisnips users.
-      -- { name = 'snippy' }, -- For snippy users.
     }, {
       { name = 'buffer' },
     })
@@ -181,7 +222,7 @@ lua <<EOF
 
   -- Setup lspconfig - see https://github.com/neovim/nvim-lspconfig/wiki/Autocompletion#nvim-cmp
   -- Replace <YOUR_LSP_SERVER> with each lsp server you've enabled.
-  local servers = { 'pyright', 'tflint', 'terraformls', 'gopls' }
+  local servers = { 'tflint', 'terraformls', 'gopls' } -- 'pyright'
   -- local servers = { 'pyright', 'tflint' }
   local lspconfig = require('lspconfig')
   local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
@@ -190,4 +231,20 @@ lua <<EOF
        capabilities = capabilities,
      }
   end
+
+  lspconfig['pyright'].setup {
+      capabilities = capabilities,
+      settings = {
+          python = {
+            analysis = { reportTypedDictNotRequiredAccess="information" }
+          }
+        }
+  }
+EOF
+
+
+" tabnine
+lua <<EOF
+ -- local tabnine = require('cmp_tabnine.config')
+ -- tabnine:setup { max_lines = 1000, max_num_results = 20, sort = true }
 EOF

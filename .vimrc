@@ -14,7 +14,7 @@ set smarttab " preserve indentation for newline
 set autoindent
 set expandtab " tab -> spaces
 set nowrap " no line wrapping
-set formatoptions-=t 
+set formatoptions-=t
 set number " show numbers
 " set relativenumber
 set splitbelow
@@ -125,8 +125,11 @@ let g:syntastic_check_on_open = 0
 let g:syntastic_check_on_wq = 0
 
 let g:syntastic_python_checkers = ['flake8', 'mypy']
-let g:syntastic_flake8_max_line_length="120"
-let g:syntastic_yaml_checkers = [ "yamllint" ]
+let g:syntastic_python_flake8_post_args="--max-line-length=120"
+" let g:syntastic_python_pylint_post_args="--max-line-length=120"
+let g:syntastic_yaml_checkers = [ 'yamllint' ]
+let g:syntastic_yaml_yamllint_post_args="-d '{extends: relaxed, rules: {line-length: {max: 120}}}'"
+
 
 let g:syntastic_markdown_mdl_exec = "markdownlint"
 let g:syntastic_markdown_mdl_args = ""
