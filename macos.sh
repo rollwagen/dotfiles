@@ -201,4 +201,3 @@ defaults write com.apple.spotlight orderedItems -array \
         '{"enabled" = 0;"name" = "MENU_EXPRESSION";}' \
         '{"enabled" = 0;"name" = "MENU_WEBSEARCH";}' \
         '{"enabled" = 0;"name" = "MENU_SPOTLIGHT_SUGGESTIONS";}'
-

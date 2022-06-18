@@ -67,4 +67,3 @@ vagrant plugin license vagrant-vmware-desktop ~/license.lic
 * _Enhanced Tracking Protection_ `about:preferences#privacy`
     * Strict
       * Send web sites a "Do Not Track"
-
