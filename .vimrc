@@ -30,7 +30,7 @@ set smartcase " ...be smart about intential uppercaseses
 set incsearch " highlight as typing
 set hlsearch " highlight all matches simultaneously
 set textwidth=80
-" set termguicolors " enable 24bit colors
+set termguicolors " enable 24bit colors
 " set pastetoggle=<F2> " paste mode (autoindent); '<C-r>+' for OS paste
 
 colorscheme zenburn " enable transparency; needs to be after colorscheme!
@@ -81,7 +81,7 @@ call plug#end()
 " Airline plugin config"
 "
 " themes: 'simple' 'alduin' 'luna'
-let g:airline_theme='luna'
+let g:airline_theme='gruvbox'
 " changed from default: 'fixed' width for line/col numbers so
 " field doesn't dynamically extend/shrink so much e.g. %v% --> %3v%
 let g:airline_section_z='%p%%%#__accent_bold#%{g:airline_symbols.linenr}%3l%#__restore__#%#__accent_bold#/%3L%{g:airline_symbols.maxlinenr}%#__restore__#%#__accent_bold#%{g:airline_symbols.colnr}%3v%#__restore__#'

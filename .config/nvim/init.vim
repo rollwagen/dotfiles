@@ -6,6 +6,7 @@ source ~/.vimrc
 " Specify a directory for plugins
 " - For Neovim: stdpath('data') . '/plugged'
 call plug#begin('~/.vim/plugged')
+        Plug 'folke/which-key.nvim'
 
         Plug 'jose-elias-alvarez/null-ls.nvim' " vale
 
@@ -31,6 +32,7 @@ call plug#begin('~/.vim/plugged')
         Plug 'hrsh7th/cmp-path'
         Plug 'hrsh7th/cmp-cmdline'
         Plug 'hrsh7th/nvim-cmp'
+        Plug 'hrsh7th/cmp-nvim-lsp-signature-help'
         " For luasnip users.
         Plug 'L3MON4D3/LuaSnip'
         Plug 'saadparwaiz1/cmp_luasnip'
@@ -59,7 +61,7 @@ call plug#begin('~/.vim/plugged')
 
 call plug#end()
 
-colorscheme kanagawa
+colorscheme gruvbox  " kanagawa
 highlight Normal guibg=NONE ctermbg=NONE  " transparency (after colorscheme!)
 highlight WinSeparator guibg=None
 set laststatus=3
@@ -108,6 +110,9 @@ map <leader>gd :Gitsigns diffthis<cr>
 " toggleterm - see <https://github.com/akinsho/toggleterm.nvim>
 lua require("toggleterm").setup{ open_mapping = [[<c-\>]] }
 
+" which-key config - https://github.com/folke/which-key.nvim
+lua require("which-key").setup {}
+
 " Lsp finding/error navigation
 " see also <https://github.com/nvim-lua/diagnostic-nvim/issues/73>
 " map <leader>p :lua vim.lsp.diagnostic.goto_prev()<cr>
@@ -140,6 +145,7 @@ lua <<EOF
   local luasnip = require("luasnip")
 
   cmp.setup({
+
      snippet = {
       -- REQUIRED - you must specify a snippet engine
        expand = function(args)
@@ -185,11 +191,12 @@ lua <<EOF
 
     }),
     sources = cmp.config.sources({
-      -- { name = 'cmp_tabnine' }, -- For tabnine
-      { name = 'nvim_lsp' },
-      { name = 'luasnip' }, -- For luasnip users.
+              -- { name = 'cmp_tabnine' }, -- For tabnine
+              { name = 'nvim_lsp_signature_help' },
+              { name = 'nvim_lsp' },
+              { name = 'luasnip' }, -- For luasnip users.
     }, {
-      { name = 'buffer' },
+              { name = 'buffer' },
     })
   })
 
@@ -223,7 +230,6 @@ lua <<EOF
   -- Setup lspconfig - see https://github.com/neovim/nvim-lspconfig/wiki/Autocompletion#nvim-cmp
   -- Replace <YOUR_LSP_SERVER> with each lsp server you've enabled.
   local servers = { 'tflint', 'terraformls', 'gopls' } -- 'pyright'
-  -- local servers = { 'pyright', 'tflint' }
   local lspconfig = require('lspconfig')
   local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
   for _, lsp in ipairs(servers) do
@@ -240,6 +246,8 @@ lua <<EOF
           }
         }
   }
+
+  -- see hrsh7th/comp-nvim-lsp-signature-help
 EOF
 
 
