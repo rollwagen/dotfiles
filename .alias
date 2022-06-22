@@ -1,10 +1,32 @@
-
 if [[ "$OSTYPE" == "linux-gnu"* ]]; then
 	alias ls='ls --color'
+
+	if type "nvim" > /dev/null; then
+		alias vim=nvim
+		alias vi=nvim
+	fi
+
+	if type "fdfind" > /dev/null; then
+		alias fd=fdfind
+	fi
+
+	# for up-to-date nvim on linux
+	[ -f ~/bin/nvim-linux64/bin/nvim ] && alias nvim=~/bin/nvim-linux64/bin/nvim
+
 else
 	# alias ls='ls -G'
-	alias ls=lsd
+	# alias ls=lsd
+	# alias cat=bat
 	alias vim=nvim
 	alias vi=nvim
-	alias cat=bat
+fi
+
+# cat->bat
+if type "bat" > /dev/null; then
+  alias cat=bat
+fi
+
+# ls->lsd
+if type "lsd" > /dev/null; then
+  alias ls=lsd
 fi
