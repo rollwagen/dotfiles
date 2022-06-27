@@ -8,6 +8,8 @@ source ~/.vimrc
 call plug#begin('~/.vim/plugged')
         Plug 'folke/which-key.nvim'
 
+        Plug 'folke/zen-mode.nvim'
+
         Plug 'jose-elias-alvarez/null-ls.nvim' " vale
 
         Plug 'kyazdani42/nvim-web-devicons' " trouble plugin
@@ -33,6 +35,9 @@ call plug#begin('~/.vim/plugged')
         Plug 'hrsh7th/cmp-cmdline'
         Plug 'hrsh7th/nvim-cmp'
         Plug 'hrsh7th/cmp-nvim-lsp-signature-help'
+
+        Plug 'windwp/nvim-autopairs'
+
         " For luasnip users.
         Plug 'L3MON4D3/LuaSnip'
         Plug 'saadparwaiz1/cmp_luasnip'
@@ -67,8 +72,7 @@ highlight WinSeparator guibg=None
 set laststatus=3
 
 " fzf
-let g:fzf_preview_window = ['right:55%']
-" let g:fzf_preview_window = ['up:60%']
+let g:fzf_preview_window = ['right:55%']  " ['up:60%']
 
 " indent-blankline - https://github.com/lukas-reineke/indent-blankline.nvim
 lua require("indent_blankline").setup { }
@@ -94,13 +98,14 @@ lua << LUA
  }
 LUA
 
+" zen-mode
+lua require("zen-mode").setup { window = {widgth = 160} }
 
 
 " vim-polyglot
 set conceallevel=0 "0 -> Text is shown normally
 
-" gitsigns - https://github.com/lewis6991/gitsigns.nvim
-"   see also https://github.com/lewis6991/gitsigns.nvim/issues/498
+" gitsigns - https://github.com/lewis6991/gitsigns.nvim + /issues/498
 lua require('gitsigns').setup()
 map <leader>gp :Gitsigns preview_hunk<cr>
 map <leader>gb :Gitsigns blame_line full=true<cr>
@@ -112,6 +117,9 @@ lua require("toggleterm").setup{ open_mapping = [[<c-\>]] }
 
 " which-key config - https://github.com/folke/which-key.nvim
 lua require("which-key").setup {}
+
+" nvim-autopairs
+lua require("nvim-autopairs").setup{}
 
 " Lsp finding/error navigation
 " see also <https://github.com/nvim-lua/diagnostic-nvim/issues/73>
@@ -229,7 +237,7 @@ lua <<EOF
 
   -- Setup lspconfig - see https://github.com/neovim/nvim-lspconfig/wiki/Autocompletion#nvim-cmp
   -- Replace <YOUR_LSP_SERVER> with each lsp server you've enabled.
-  local servers = { 'tflint', 'terraformls', 'gopls' } -- 'pyright'
+  local servers = { 'tflint', 'terraformls', 'gopls' } -- 'pyright': see below
   local lspconfig = require('lspconfig')
   local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
   for _, lsp in ipairs(servers) do
@@ -247,7 +255,23 @@ lua <<EOF
         }
   }
 
-  -- see hrsh7th/comp-nvim-lsp-signature-help
+         local configs = require 'lspconfig/configs'
+
+        if not configs.golangcilsp then
+          configs.golangcilsp = {
+            default_config = {
+              cmd = {'golangci-lint-langserver'},
+              root_dir = lspconfig.util.root_pattern('.git', 'go.mod'),
+              init_options = {
+                  command = { "golangci-lint", "run", "--enable-all", "--disable", "lll", "--out-format", "json" };
+              }
+            };
+          }
+        end
+        lspconfig.golangci_lint_ls.setup {
+          filetypes = {'go','gomod'}
+        }
+
 EOF
 
 
