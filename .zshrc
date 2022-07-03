@@ -76,7 +76,10 @@ ZSH_HIGHLIGHT_HIGHLIGHTERS_FILE=/usr/share/zsh-syntax-highlighting/zsh-syntax-hi
 #  export ZSH_HIGHLIGHT_HIGHLIGHTERS_DIR=/usr/local/share/zsh-syntax-highlighting/highlighters
 
 # kubectl autocomplete - see  https://kubernetes.io/docs/reference/kubectl/cheatsheet/
-[[ kubectl ]] && source <(kubectl completion zsh)
+if  type "kubectl" >/dev/null ; then
+  source <(kubectl completion zsh)
+fi
+
 
 # iTerm2 shell integration
 [ -f ~/.iterm2_shell_integration.zsh ] && source ~/.iterm2_shell_integration.zsh
