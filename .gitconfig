@@ -12,6 +12,7 @@
 [core]
 	editor = nvim
 	pager = delta
+	excludesfile = /Users/rollwagen/.gitignore
 
 [rebase]
 	autostash = true
@@ -23,6 +24,7 @@
 	c = commit
 	pp = pull --prune
 	update = !git pull --rebase --prune $@ && git submodule update --init --recursive
+	clonesubcommit = "!f() { git clone --recurse-submodules $1; cd $(basename \"$1\" .git); pre-commit install --config .pre-commit-config.yaml; }; f"
 	s = status --short --branch
 	co = checkout
 	co- = checkout -
@@ -32,7 +34,8 @@
 	ca = commit --all
 	l1 = log --pretty='%C(yellow)%h%C(reset) | %C(red)%d%Creset %C(cyan)%s%C(reset) %C(green)(%cs)%C(reset) %an' --graph --max-count=10
 	l2 = log --pretty='%C(yellow)%h%C(reset) | %C(red)%d%Creset %C(cyan)%s%C(reset) %C(green)(%cr)%C(reset)' --graph --max-count=20
-	l = l1
+	l3 = log --graph --all --pretty='format:%C(auto)%h %C(cyan)%ar %C(auto)%d %C(magenta)%an %C(auto)%s' --max-count=12
+	l = l3
 	diff-prose = diff --word-diff --unified=10
 	d = diff
 	unstage = reset HEAD
@@ -54,3 +57,11 @@
 
 [interactive]
 	diffFilter = delta --color-only
+
+; git config --global  url.ssh://git@gitlab.xxx.ch/.insteadOf https://gitlab.xxx.ch/
+
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
