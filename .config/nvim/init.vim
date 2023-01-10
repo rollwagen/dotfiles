@@ -6,6 +6,17 @@ source ~/.vimrc
 " Specify a directory for plugins
 " - For Neovim: stdpath('data') . '/plugged'
 call plug#begin('~/.vim/plugged')
+
+        Plug 'eandrju/cellular-automaton.nvim'
+
+        Plug 'nvim-treesitter/nvim-treesitter'
+        Plug 'p00f/nvim-ts-rainbow'
+        " Plug 'luisiacc/gruvbox-baby', {'branch': 'main'}
+        Plug 'sainnhe/gruvbox-material'
+
+        Plug 'simrat39/inlay-hints.nvim'
+        " Plug 'fatih/vim-go'
+
         Plug 'folke/which-key.nvim'
 
         Plug 'folke/zen-mode.nvim'
@@ -43,7 +54,6 @@ call plug#begin('~/.vim/plugged')
         Plug 'saadparwaiz1/cmp_luasnip'
         Plug 'rafamadriz/friendly-snippets'
 
-        "Plug 'tzachar/cmp-tabnine', { 'do': './install.sh' , 'requires': 'hrsh7th/nvim-cmp'}
 
         " Color schemes
         Plug 'morhetz/gruvbox' " color scheme
@@ -66,7 +76,7 @@ call plug#begin('~/.vim/plugged')
 
 call plug#end()
 
-colorscheme gruvbox  " kanagawa
+colorscheme gruvbox " gruvbox-material " gruvbox   kanagawa
 highlight Normal guibg=NONE ctermbg=NONE  " transparency (after colorscheme!)
 highlight WinSeparator guibg=None
 set laststatus=3
@@ -77,19 +87,16 @@ let g:fzf_preview_window = ['right:55%']  " ['up:60%']
 " indent-blankline - https://github.com/lukas-reineke/indent-blankline.nvim
 lua require("indent_blankline").setup { }
 
+" nvim-treesitter setup
+lua require("nvim-treesitter.configs").setup { rainbow = { enable = true } }
+
 " spelling / spellcheck - toggle spelling: :set spell!
 " next:  [s   add to spellfile: zg  correct/candidates:  z=
 set spelllang=en
 set spellsuggest=best,4 " show four pell checking candidates max
 
 " vale setup - https://bhupesh.me/writing-like-a-pro-with-vale-and-neovim/
-lua << EOF
-require("null-ls").setup({
-    sources = {
-        require("null-ls").builtins.diagnostics.vale,
-    },
-})
-EOF
+lua require("null-ls").setup({ sources = { require("null-ls").builtins.diagnostics.vale, }, })
 
 " trouble.nvim - https://github.com/folke/trouble.nvim
 lua << LUA
@@ -121,8 +128,13 @@ lua require("which-key").setup {}
 " nvim-autopairs
 lua require("nvim-autopairs").setup{}
 
-" Lsp finding/error navigation
+
+
+"
+" Lsp finding and error navigation
 " see also <https://github.com/nvim-lua/diagnostic-nvim/issues/73>
+"
+
 " map <leader>p :lua vim.lsp.diagnostic.goto_prev()<cr>
 " map <leader>p :lua vim.lsp.diagnostic.get_prev({})<cr>
 " map <leader>n :lua vim.lsp.diagnostic.goto_next()<cr>
@@ -132,6 +144,7 @@ map <leader>p :lua vim.diagnostic.goto_prev({ float =  { border = "single" }})<c
 map <leader>lr :lua vim.lsp.buf.rename()<cr>
 map <leader>lh :lua vim.lsp.buf.hover()<cr>
 map <leader>lsh :lua vim.lsp.buf.signature_help()<cr>
+map <leader>lca :lua vim.lsp.buf.code_action()<cr>
 
 " nvim-cmp recommended settings as per https://github.com/hrsh7th/nvim-cmp
 set completeopt=menu,menuone,noselect
@@ -199,7 +212,6 @@ lua <<EOF
 
     }),
     sources = cmp.config.sources({
-              -- { name = 'cmp_tabnine' }, -- For tabnine
               { name = 'nvim_lsp_signature_help' },
               { name = 'nvim_lsp' },
               { name = 'luasnip' }, -- For luasnip users.
@@ -237,9 +249,10 @@ lua <<EOF
 
   -- Setup lspconfig - see https://github.com/neovim/nvim-lspconfig/wiki/Autocompletion#nvim-cmp
   -- Replace <YOUR_LSP_SERVER> with each lsp server you've enabled.
-  local servers = { 'tflint', 'terraformls', 'gopls' } -- 'pyright': see below
+  -- local servers = { 'tflint', 'terraformls', 'gopls' } -- 'pyright': see below
+  local servers = { 'tflint', 'terraformls'} -- 'pyright': see below
   local lspconfig = require('lspconfig')
-  local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+  local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
   for _, lsp in ipairs(servers) do
      lspconfig[lsp].setup {
        capabilities = capabilities,
@@ -255,28 +268,58 @@ lua <<EOF
         }
   }
 
-         local configs = require 'lspconfig/configs'
 
-        if not configs.golangcilsp then
-          configs.golangcilsp = {
-            default_config = {
-              cmd = {'golangci-lint-langserver'},
-              root_dir = lspconfig.util.root_pattern('.git', 'go.mod'),
-              init_options = {
-                  command = { "golangci-lint", "run", "--enable-all", "--disable", "lll", "--out-format", "json" };
-              }
-            };
-          }
-        end
-        lspconfig.golangci_lint_ls.setup {
-          filetypes = {'go','gomod'}
-        }
+-- local configs = require 'lspconfig/configs'
+--
+-- if not configs.golangcilsp then
+--   configs.golangcilsp = {
+--     default_config = {
+--       cmd = {'golangci-lint-langserver'},
+--       root_dir = lspconfig.util.root_pattern('.git', 'go.mod'),
+--       init_options = {
+--           command = { "golangci-lint", "run", "--enable-all", "--disable", "lll", "--out-format", "json" };
+--       }
+--     };
+--   }
+-- end
+-- lspconfig.golangci_lint_ls.setup {
+--   filetypes = {'go','gomod'}
+-- }
 
-EOF
+
+  local inlay_hints = require("inlay-hints")
+  inlay_hints.setup({
+        renderer = "inlay-hints/render/eol",
+  })
+
+  local on_attach = function(client, bufnr)
+	  inlay_hints.on_attach(client, bufnr)
+  end
+
+  local lspconfig = require("lspconfig")
+  lspconfig.gopls.setup({
+  	capabilities = capabilities,
+  	on_attach = on_attach,
+  	settings = {
+  		gopls = {
+  			gofumpt = true,
+        staticcheck = true,
+         analyses = { -- https://github.com/golang/tools/blob/master/gopls/doc/settings.md#analyses
+          unusedparams = true,
+          unusedvariable = true,
+        },
+  			hints = {
+  			-- 	assignVariableTypes = true,
+  			compositeLiteralFields = true,
+  			-- 	compositeLiteralTypes = true,
+  			-- 	constantValues = false,
+  			functionTypeParameters = true,
+  			parameterNames = true,
+  			-- 	rangeVariableTypes = true,
+  			},
+  		},
+  	},
+  })
 
 
-" tabnine
-lua <<EOF
- -- local tabnine = require('cmp_tabnine.config')
- -- tabnine:setup { max_lines = 1000, max_num_results = 20, sort = true }
 EOF
