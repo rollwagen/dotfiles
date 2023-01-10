@@ -120,6 +120,8 @@ brew install bat
 brew install less
 brew install colordiff
 brew install curl
+brew install starship
+brew install zoxide
 
 brew install node
 brew install yarn
