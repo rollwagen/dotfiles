@@ -16,12 +16,12 @@ set expandtab " tab -> spaces
 set nowrap " no line wrapping
 set formatoptions-=t
 set number " show numbers
-" set relativenumber
+set relativenumber
 set splitbelow
 set splitright
 set backspace=indent,eol,start
 set complete-=i
-" set mouse=a
+set mouse=
 set cursorline " higlight whole line cursor is on
 set signcolumn=yes " enable/display leftmost col
 set scrolloff=4 " start scrolling 4 lines before end
@@ -71,6 +71,7 @@ call plug#begin('~/.vim/plugged')
         " Airline - status/tabline plugin https://github.com/vim-airline/vim-airline
         Plug 'vim-airline/vim-airline'
         Plug 'vim-airline/vim-airline-themes'
+        Plug 'morhetz/gruvbox'
 
         "Plug 'tc50cal/vim-terminal'
 
@@ -126,13 +127,28 @@ let g:syntastic_check_on_wq = 0
 
 let g:syntastic_python_checkers = ['flake8', 'mypy']
 let g:syntastic_python_flake8_post_args="--max-line-length=120"
-" let g:syntastic_python_pylint_post_args="--max-line-length=120"
+let g:syntastic_python_pylint_post_args="--max-line-length=120"
 let g:syntastic_yaml_checkers = [ 'yamllint' ]
 let g:syntastic_yaml_yamllint_post_args="-d '{extends: relaxed, rules: {line-length: {max: 120}}}'"
 
-
 let g:syntastic_markdown_mdl_exec = "markdownlint"
 let g:syntastic_markdown_mdl_args = ""
+
+" tell syntastic that go, golint, and errcheck are installed
+" let g:syntastic_go_checkers = ['revive']
+" " let g:syntastic_go_checkers = ['go', 'golint', 'errcheck']
+" " let g:syntastic_go_checkers = ['golangci-lint', 'revive']
+" " let g:syntastic_go_golangci_lint_args = ['run']
+
+" " tell vim-go that goimports is installed
+" let g:go_fmt_command = "goimports"
+
+" " tell vim-go to highlight
+" let g:go_highlight_functions = 1
+" let g:go_highlight_methods = 1
+" let g:go_highlight_structs = 1
+" let g:go_highlight_operators = 1
+" let g:go_highlight_build_constraints = 1
 
 
 "
