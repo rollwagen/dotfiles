@@ -1,0 +1,174 @@
+
+add_newline = false
+
+[line_break]
+disabled = true
+
+
+# format = "$all" - Which is equivalent to
+format = """
+$username\
+$hostname\
+$localip\
+$shlvl\
+$singularity\
+$kubernetes\
+$directory\
+$vcsh\
+$git_branch\
+$git_commit\
+$git_state\
+$git_metrics\
+$git_status\
+$hg_branch\
+$docker_context\
+$package\
+$c\
+$cmake\
+$cobol\
+$daml\
+$dart\
+$deno\
+$dotnet\
+$elixir\
+$elm\
+$erlang\
+$golang\
+$haskell\
+$helm\
+$java\
+$julia\
+$kotlin\
+$lua\
+$nim\
+$nodejs\
+$ocaml\
+$perl\
+$php\
+$pulumi\
+$purescript\
+$python\
+$raku\
+$rlang\
+$red\
+$ruby\
+$rust\
+$scala\
+$swift\
+$terraform\
+$vlang\
+$vagrant\
+$zig\
+$buf\
+$nix_shell\
+$conda\
+$meson\
+$spack\
+$memory_usage\
+$aws \
+$azure\
+$env_var\
+$crystal\
+$custom\
+$sudo\
+$cmd_duration\
+$line_break\
+$jobs\
+$battery\
+$status\
+$container\
+$shell\
+$character"""
+
+
+[aws]
+symbol = "  "
+style	= "dimmed yellow"
+format = 'on [$symbol$profile ]($style)'
+force_display = true
+
+[c]
+symbol = " "
+
+[cmd_duration]
+disabled = true
+
+[directory]
+read_only = " "
+truncation_length = 5
+truncation_symbol = "…/"
+
+[directory.substitutions]
+"hhc202" = " "
+
+
+[docker_context]
+symbol = " "
+
+[gcloud]
+disabled = true
+
+[git_branch]
+symbol = " "
+truncation_length = 9
+truncation_symbol = "…"
+ignore_branches = ["master", "main"]
+
+[git_status]
+format = '([\[$all_status$ahead_behind\]]($style) )'
+# up_to_date = "[✓](green)"
+up_to_date = ""
+style = "dimmed red"
+staged = '[++\($count\)](green)'
+diverged = "⇕⇡${ahead_count}⇣${behind_count}"
+behind = "⇣${count}"
+
+
+[golang]
+symbol = " "
+version_format ="${major}.${minor}"
+format = "[$symbol$version](dimmed cyan) "
+# format = "[$symbol$version](bold cyan) "
+disabled = false
+
+[hg_branch]
+symbol = " "
+
+[hostname]
+ssh_only = true
+disabled = false
+style	= "dimmed green"
+format = "[$ssh_symbol@$hostname]($style)"
+
+[java]
+symbol = " "
+
+[lua]
+symbol = " "
+
+[memory_usage]
+symbol = " "
+
+[nodejs]
+symbol = " "
+
+[package]
+symbol = " "
+
+[python]
+symbol = " "
+
+[ruby]
+symbol = " "
+
+[rust]
+symbol = " "
+
+[terraform]
+disabled = true
+
+[username]
+disabled = false
+show_always = false
+style_user = "green"
+format = "[$user]($style)"
