@@ -1,4 +1,3 @@
-
 # ################################ #
 #      oh-my-zsh config.           #
 # ################################ #
@@ -7,18 +6,21 @@
 export ZSH=~/.oh-my-zsh
 
 # Manually load git plugin (without oh-my-zsh)
-#source $ZSH/lib/git.zsh
-#source $ZSH/plugins/git/git.plugin.zsh
+# source $ZSH/lib/git.zsh
+# source $ZSH/plugins/git/git.plugin.zsh
 
-ZSH_THEME="robbyrussell"
-#ZSH_THEME="agnoster"
+# ZSH_THEME="powerlevel10k/powerlevel10k"
+# ZSH_THEME="robbyrussell"
+# ZSH_THEME="agnoster"
 # ZSH_THEME="agitnoster"
 
-plugins=(git docker docker-compose)
+plugins=(zsh-autosuggestions) # (git docker docker-compose)
 
 if [ -f "$ZSH/oh-my-zsh.sh" ]; then
   source $ZSH/oh-my-zsh.sh
 fi
+
+# zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
 
 # ################################ #
 #      END oh-my-zsh config.       #
@@ -46,7 +48,7 @@ compinit
 #
 # brew zsh-completion
 #
-#To activate these completions, add the following to your .zshrc:
+# To activate these completions, add the following to your .zshrc:
 
   if type brew &>/dev/null; then
     FPATH=$FPATH:$(brew --prefix)/share/zsh/site-functions
@@ -55,10 +57,10 @@ compinit
     compinit
   fi
 
-#You may also need to force rebuild `zcompdump`:
+# You may also need to force rebuild `zcompdump`:
 #   rm -f ~/.zcompdump; compinit
-#Additionally, if you receive "zsh compinit: insecure directories" warnings when attempting
-#to load these completions, you may need to run this:
+# Additionally, if you receive "zsh compinit: insecure directories" warnings when attempting
+# to load these completions, you may need to run this:
 #   chmod go-w '/usr/local/share'
 
 
@@ -109,8 +111,6 @@ bindkey "ç" fzf-cd-widget
 autoload bashcompinit && bashcompinit
 [ -f /usr/local/etc/bash_completion.d/az ] && source /usr/local/etc/bash_completion.d/az
 
-# Import aliases
-source ~/.alias
 
 # FZF_ALT_C_COMMAND (orig:  fd --type d --exclude "Library/" --exclude "Music/")
 # - follow also symlinks
@@ -151,8 +151,7 @@ fi
 # Alacritty not available via brew on Apple Silicon
 [ -f ~/.cargo/bin/alacritty ] && alias alacritty=~/.cargo/bin/alacritty
 
-# Python / pyenv specifics
-## eval "$(pyenv virtualenv-init -)"
+# Python / pyenv specifics `eval "$(pyenv virtualenv-init -)"`
 if type "pyenv" > /dev/null; then
   eval "$(pyenv init --path)"
 fi
@@ -161,10 +160,29 @@ fi
 autoload -U +X bashcompinit && bashcompinit
 complete -o nospace -C /opt/homebrew/bin/terraform terraform
 
-export SSH_AUTH_SOCK=/Users/rollwagen/Library/Containers/com.maxgoedjen.Secretive.SecretAgent/Data/socket.ssh
 
-# gco = git checkout using fzf
+# gco -> git checkout using fzf
+# see https://github.com/cseickel/dotfiles/blob/main/zshrc#L144-L17
 function fn_git_checkout() {
   branch=$(git branch --all  | fzf | sed "s/remotes\/origin\///" | xargs); git checkout $branch
 }
 alias gco='fn_git_checkout'
+
+
+eval "$(/opt/homebrew/bin/brew shellenv)"
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+# Import aliases
+source ~/.alias # eval "$(cat ~/.alias)"
+
+# Secretive
+# export SSH_AUTH_SOCK=/Users/rollwagen/Library/Containers/com.maxgoedjen.Secretive.SecretAgent/Data/socket.ssh
+
+# echo 'export PATH="/opt/homebrew/opt/openssl@3/bin:$PATH"'
+
+eval "$(starship init zsh)"
+
+source <(golangci-lint completion zsh); compdef _golangci-lint golangci-lint
+export PYENV_ROOT="/Users/rollwagen/.pyenv"; export PATH="$PYENV_ROOT/bin:$PATH"; eval "$(pyenv init -)"
+
+eval "$(zoxide init zsh)"
