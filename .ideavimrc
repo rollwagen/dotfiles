@@ -1,0 +1,42 @@
+
+" The Essential IdeaVim Remaps
+" https://towardsdatascience.com/the-essential-ideavim-remaps-291d4cd3971b
+
+let mapleader = "\"
+
+""" Plugins  --------------------------------
+Plug 'machakann/vim-highlightedyank'
+
+Plug 'tpope/vim-commentary'
+set commentary
+
+"" cs: To change the surroundings.
+"" ds: To delete the surroundings.
+"" ys: To add surroundings.
+"" S: To surround the currently selected text.
+"" Examples:
+""    cs”’: Change the surrounding from double quotes to single quotes.
+""    ds”: Delete the closest double-quotes surroundings.
+""    ysiw<b>: Surround the current word with <b> tag (iw means inner word.)
+Plug 'tpope/vim-surround'
+set surround
+
+" Show a few lines of context around the cursor. Note that this makes the
+" text scroll if you mouse-click near the start or end of the window.
+set scrolloff=5
+
+" Do incremental searching.
+set incsearch
+
+set showmode
+" set number
+set number
+set relativenumber
+set showcmd
+
+set smartcase
+set incsearch
+set hlsearch
+
+set surround
+set highlightedyank
