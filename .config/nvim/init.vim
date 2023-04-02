@@ -9,7 +9,8 @@ call plug#begin('~/.vim/plugged')
 
         Plug 'eandrju/cellular-automaton.nvim'
 
-        Plug 'nvim-treesitter/nvim-treesitter'
+        Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+        Plug 'nvim-treesitter/nvim-treesitter-context'
         Plug 'p00f/nvim-ts-rainbow'
         " Plug 'luisiacc/gruvbox-baby', {'branch': 'main'}
         Plug 'sainnhe/gruvbox-material'
@@ -54,7 +55,6 @@ call plug#begin('~/.vim/plugged')
         Plug 'saadparwaiz1/cmp_luasnip'
         Plug 'rafamadriz/friendly-snippets'
 
-
         " Color schemes
         Plug 'morhetz/gruvbox' " color scheme
         Plug 'ghifarit53/tokyonight-vim' " color scheme
@@ -74,9 +74,11 @@ call plug#begin('~/.vim/plugged')
         Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
         Plug 'junegunn/fzf.vim'
 
+        Plug 'sainnhe/gruvbox-material'
+
 call plug#end()
 
-colorscheme gruvbox " gruvbox-material " gruvbox   kanagawa
+colorscheme gruvbox " kanagawa gruvbox  gruvbox-material  gruvbox   kanagawa
 highlight Normal guibg=NONE ctermbg=NONE  " transparency (after colorscheme!)
 highlight WinSeparator guibg=None
 set laststatus=3
@@ -88,7 +90,16 @@ let g:fzf_preview_window = ['right:55%']  " ['up:60%']
 lua require("indent_blankline").setup { }
 
 " nvim-treesitter setup
-lua require("nvim-treesitter.configs").setup { rainbow = { enable = true } }
+lua << LUA
+require'nvim-treesitter.configs'.setup {
+  ensure_installed = { "go", "python", "lua", "vim", "vimdoc", "query" }, -- A list of parser names, or "all" (the five listed parsers should always be installed)
+  sync_install = false, -- Install parsers synchronously (only applied to `ensure_installed`)
+  auto_install = false, -- Auto install missing parsers when entering buffer; set to false if no `tree-sitter` CLI installed
+  highlight = {
+    enable = true,
+  },
+}
+LUA
 
 " spelling / spellcheck - toggle spelling: :set spell!
 " next:  [s   add to spellfile: zg  correct/candidates:  z=
@@ -143,11 +154,17 @@ map <leader>n :lua vim.diagnostic.goto_next({ float =  { border = "single" }})<c
 map <leader>p :lua vim.diagnostic.goto_prev({ float =  { border = "single" }})<cr>
 map <leader>lr :lua vim.lsp.buf.rename()<cr>
 map <leader>lh :lua vim.lsp.buf.hover()<cr>
+map <leader>lf :lua vim.lsp.buf.format()<cr>
 map <leader>lsh :lua vim.lsp.buf.signature_help()<cr>
 map <leader>lca :lua vim.lsp.buf.code_action()<cr>
 
 " nvim-cmp recommended settings as per https://github.com/hrsh7th/nvim-cmp
 set completeopt=menu,menuone,noselect
+
+
+
+
+
 
 
 
