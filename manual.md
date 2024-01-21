@@ -40,6 +40,13 @@ vagrant plugin license vagrant-vmware-desktop ~/license.lic
   * run `run sudo chmod -R 755 target_directory`
   * OR `compaudit | xargs chmod g-w,o-w`
 
+* PowerLevel 10K
+  * `git clone https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k`
+
+* Zsh Syntax Highlighting
+  * `git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting`
+
+
 ## TinkerTool
 * (https://www.bresink.com/osx/0TinkerTool/download.php)
 
