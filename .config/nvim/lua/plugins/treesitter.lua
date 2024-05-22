@@ -9,7 +9,7 @@ return {
 			{
 				"nvim-treesitter/nvim-treesitter-textobjects",
 				"nvim-treesitter/nvim-treesitter-context",
-				"HiPhish/nvim-ts-rainbow2",
+				"HiPhish/rainbow-delimiters.nvim",
 			},
 		},
 
