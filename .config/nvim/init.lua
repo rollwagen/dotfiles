@@ -18,7 +18,8 @@ local lazy_opts = {
 		missing = true, -- install missing plugins on startup; doesn't increase startup time.
 		-- try to load one of these colorschemes when starting an installation during startup
 		-- colorscheme = { "gruvbox" },
-		colorscheme = { "kanagawa" },
+		-- colorscheme = { "kanagawa" },
+		-- set to load below with vim.cmd
 	},
 	performance = {
 		cache = {
