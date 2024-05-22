@@ -8,7 +8,7 @@ return {
 				-- show_current_context = false,
 				-- show_current_context_start = false,
 				indent = {
-					char = { "┆" },
+					char = {"▏"},
 				},
 			})
 		end,
