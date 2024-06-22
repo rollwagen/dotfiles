@@ -17,9 +17,9 @@ local lazy_opts = {
 	install = {
 		missing = true, -- install missing plugins on startup; doesn't increase startup time.
 		-- try to load one of these colorschemes when starting an installation during startup
+		-- now set to load below with vim.cmd --
 		-- colorscheme = { "gruvbox" },
 		-- colorscheme = { "kanagawa" },
-		-- set to load below with vim.cmd
 	},
 	performance = {
 		cache = {
@@ -32,7 +32,7 @@ local lazy_opts = {
 				"gzip",
 				"matchit",
 				"matchparen",
-				-- "netrwPlugin",
+				"netrwPlugin",
 				"tarPlugin",
 				"tohtml",
 				"tutor",
@@ -45,10 +45,12 @@ local lazy_opts = {
 -- load lazy plugins in 'plugins/'  require("lazy").setup({ { import = "plugins" } })
 require("lazy").setup("plugins", lazy_opts)
 
--- coloscheme settings
+-- coloscheme settings, colorscheme plugins are in colorschema.lua
 vim.opt.background = "dark" -- or "light" for light mode
+vim.cmd([[colorscheme tokyonight-storm]]) -- ...-night, -storm, -day, -moon
 -- vim.cmd([[colorscheme gruvbox]])
-vim.cmd([[colorscheme kanagawa]])
+-- vim.cmd([[colorscheme kanagawa]])
+-- vim.cmd([[colorscheme catppuccin-macchiato]]) -- catapuccin catppuccin-latte, catppuccin-frappe, catppuccin-macchiato, catppuccin-mocha
 
 -- :help showtabline
 vim.opt.showtabline = 1

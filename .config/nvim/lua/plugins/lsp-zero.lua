@@ -7,19 +7,18 @@ return {
 		branch = "v2.x",
 		dependencies = {
 			-- LSP Support
-			{ "neovim/nvim-lspconfig" }, -- Required
+			{ "neovim/nvim-lspconfig" },          -- Required
 			{
-				-- Optional
-				"williamboman/mason.nvim",
-				build = ":MasonUpdate", -- :MasonUpdate updates registry contents
+				"williamboman/mason.nvim",          -- Optional
+				build = ":MasonUpdate",             -- :MasonUpdate updates registry contents
 			},
 			{ "williamboman/mason-lspconfig.nvim" }, -- Optional
 
 			-- Autocompletion
-			{ "hrsh7th/nvim-cmp" }, -- Required
+			{ "hrsh7th/nvim-cmp" },  -- Required
 			{ "hrsh7th/cmp-nvim-lsp" }, -- Required
 			{
-				"L3MON4D3/LuaSnip", -- Required
+				"L3MON4D3/LuaSnip",    -- Required
 				dependencies = {
 					"rafamadriz/friendly-snippets",
 					"saadparwaiz1/cmp_luasnip",
@@ -51,10 +50,12 @@ return {
 				"lua_ls",
 				"gopls",
 				-- "golangci_lint_ls",
-				"pylsp",
+				-- "pylsp",
 				"pyright",
+				"ruff",
 				"terraformls",
 				"tflint",
+				"taplo", -- for toml (e.g. for pyproject.toml files)
 			})
 
 			lsp.set_preferences({
@@ -96,33 +97,34 @@ return {
 				},
 			})
 
-			-- Configure pylsp language server for python
-			require("lspconfig").pylsp.setup({
-				settings = {
-					pylsp = {
-						plugins = {
-							pycodestyle = {
-								ignore = { "W391" }, -- Blank line at end of file
-								maxLineLength = 120,
-							},
-							isort = { enabled = true },
-							black = {
-								enabled = true,
-								line_length = 120,
-							},
-						},
-					},
-				},
+			-- Configure ruff linter language server
+			require("lspconfig").ruff.setup({
+				hoverProvider = false, -- disable hover in favor of pyright
 			})
 
 			-- Configure pyright language server for python
 			require("lspconfig").pyright.setup({
 				settings = {
+					pyright = {
+						-- https://github.com/microsoft/pyright/blob/main/docs/configuration.md
+						disableOrganizeImports = true, -- using Ruff's import organizer
+						disableTaggedHints = true,
+					},
 					python = {
 						analysis = {
-							typeCheckingMode = "off", -- basic / off / strict
+							ignore = { "*" },     -- ignore all files for analysis to only use Ruff for linting
+							typeCheckingMode = "strict", -- basic / off / strict; off -> usign mypy
+							diagnosticSeverityOverrides = {
+								-- https://github.com/microsoft/pyright/blob/main/docs/configuration.md#type-check-diagnostics-settings
+								reportUndefinedVariable = "none", -- ruff
+								reportUnusedVariable = "none", -- ruff
+								reportMissingImports = "none", -- ruff
+								reportOperatorIssue = "none", -- mypy
+								reportReturnType = "none", -- mypy
+								reportCallIssue = "none", -- ruff
+							},
 						},
-						diagnosticMode = "openFilesOnly",
+						-- diagnosticMode = "openFilesOnly",  -- only show diagnostics for open files
 					},
 				},
 			})
@@ -142,56 +144,21 @@ return {
 
 					-- Buffer local mappings.
 					-- See `:help vim.lsp.*` for documentation on any of the below functions
-					vim.keymap.set(
-						"n",
-						"gD",
-						vim.lsp.buf.declaration,
-						{ buffer = ev.buf, desc = "[LSP] Goto declaration" }
-					)
-					vim.keymap.set(
-						"n",
-						"gd",
-						vim.lsp.buf.definition,
-						{ buffer = ev.buf, desc = "[LSP] Goto definition" }
-					)
+					vim.keymap.set("n", "gD", vim.lsp.buf.declaration, { buffer = ev.buf, desc = "[LSP] Goto declaration" })
+					vim.keymap.set("n", "gd", vim.lsp.buf.definition, { buffer = ev.buf, desc = "[LSP] Goto definition" })
 					vim.keymap.set("n", "K", vim.lsp.buf.hover, { buffer = ev.buf, desc = "[LSP] Hover info" })
-					vim.keymap.set(
-						"n",
-						"gi",
-						vim.lsp.buf.implementation,
-						{ buffer = ev.buf, desc = "[LSP] Goto implementation" }
-					)
-					vim.keymap.set(
-						"n",
-						"<C-k>",
-						vim.lsp.buf.signature_help,
-						{ buffer = ev.buf, desc = "[LSP] Signature help" }
-					)
+					vim.keymap.set("n", "gi", vim.lsp.buf.implementation, { buffer = ev.buf, desc = "[LSP] Goto implementation" })
+					vim.keymap.set("n", "<C-k>", vim.lsp.buf.signature_help, { buffer = ev.buf, desc = "[LSP] Signature help" })
 					-- vim.keymap.set("n", "<space>wa", vim.lsp.buf.add_workspace_folder,  { buffer = ev.buf, desc = "" })
 					-- vim.keymap.set("n", "<space>wr", vim.lsp.buf.remove_workspace_folder,  { buffer = ev.buf, desc = "" })
 					-- vim.keymap.set("n", "<space>wl", function() print(vim.inspect(vim.lsp.buf.list_workspace_folders())) end,  { buffer = ev.buf, desc = "" })
-					vim.keymap.set(
-						"n",
-						"<space>D",
-						vim.lsp.buf.type_definition,
-						{ buffer = ev.buf, desc = "[LSP] Type definition" }
-					)
+					vim.keymap.set("n", "<space>D", vim.lsp.buf.type_definition,
+						{ buffer = ev.buf, desc = "[LSP] Type definition" })
 					vim.keymap.set("n", "<space>rn", vim.lsp.buf.rename, { buffer = ev.buf, desc = "[LSP] Rename" })
-					vim.keymap.set(
-						{ "n", "v" },
-						"<space>ca",
-						vim.lsp.buf.code_action,
-						{ buffer = ev.buf, desc = "[LSP] Code action" }
-					)
-					vim.keymap.set(
-						"n",
-						"gr",
-						vim.lsp.buf.references,
-						{ buffer = ev.buf, desc = "[LSP] List references" }
-					)
-					vim.keymap.set("n", "<space>f", function()
-						vim.lsp.buf.format({ async = true })
-					end, { buffer = ev.buf, desc = "[LSP] Format buffer" })
+					vim.keymap.set({ "n", "v" }, "<space>ca", vim.lsp.buf.code_action,
+						{ buffer = ev.buf, desc = "[LSP] Code action" })
+					vim.keymap.set("n", "gr", vim.lsp.buf.references, { buffer = ev.buf, desc = "[LSP] List references" })
+					-- vim.keymap.set("n", "<space>f", function() vim.lsp.buf.format({ async = true }) end, { buffer = ev.buf, desc = "[LSP] Format buffer" })
 				end,
 			})
 
@@ -210,30 +177,30 @@ return {
 			cmp.setup({
 				sources = {
 					{ name = "nvim_lsp" },
-					{ name = "cody" },
 					{ name = "luasnip" },
-					{ name = "buffer", keyword_length = 5 },
+					{ name = "buffer",  keyword_length = 5 },
+					-- { name = "cody" },
 				},
 				mapping = cmp.mapping.preset.insert({
-					["<c-a>"] = cmp.mapping.complete({
-						config = {
-							sources = {
-								{ name = "cody" },
-							},
-						},
-					}),
 					["<CR>"] = cmp.mapping.confirm({ select = false }),
 					["<C-e>"] = cmp.mapping.abort(),
 					["<C-b>"] = cmp.mapping.scroll_docs(-4),
 					["<C-f>"] = cmp.mapping.scroll_docs(4),
 					-- ['<C-f>'] = cmp_action.luasnip_jump_forward(),
 					-- ['<C-b>'] = cmp_action.luasnip_jump_backward(),
+					-- ["<c-a>"] = cmp.mapping.complete({
+					-- 	config = {
+					-- 		sources = {
+					-- 			{ name = "cody" },
+					-- 		},
+					-- 	},
+					-- }),
 				}),
 				formatting = {
 					fields = { "abbr", "kind", "menu" },
 					format = require("lspkind").cmp_format({
 						mode = "symbol_text", -- options: 'text', 'text_symbol', 'symbol_text', 'symbol'
-						maxwidth = 40, -- prevent the popup from showing more than provided characters
+						maxwidth = 50, -- prevent the popup from showing more than provided characters
 						ellipsis_char = "…", -- when popup menu exceed maxwidth, the truncated part would show ellipsis_char instead
 					}),
 				},

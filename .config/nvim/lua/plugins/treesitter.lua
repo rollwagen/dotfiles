@@ -30,6 +30,7 @@ return {
 				"python",
 				"go",
 				"gomod",
+				"toml",
 			},
 			incremental_selection = {
 				enable = true, -- init_selection = 'gnn'

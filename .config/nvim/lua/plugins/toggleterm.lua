@@ -5,9 +5,9 @@ return {
 		config = function()
 			require("toggleterm").setup({
 				open_mapping = [[<c-\>]],
-				direction = 'float',
+				direction = "float",
 				float_opts = {
-					border = 'single' --  'curved'
+					border = "single", --  'curved'
 				},
 			})
 		end,
