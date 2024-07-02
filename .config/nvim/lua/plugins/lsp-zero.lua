@@ -7,18 +7,18 @@ return {
 		branch = "v2.x",
 		dependencies = {
 			-- LSP Support
-			{ "neovim/nvim-lspconfig" },          -- Required
+			{ "neovim/nvim-lspconfig" }, -- Required
 			{
-				"williamboman/mason.nvim",          -- Optional
-				build = ":MasonUpdate",             -- :MasonUpdate updates registry contents
+				"williamboman/mason.nvim", -- Optional
+				build = ":MasonUpdate", -- :MasonUpdate updates registry contents
 			},
 			{ "williamboman/mason-lspconfig.nvim" }, -- Optional
 
 			-- Autocompletion
-			{ "hrsh7th/nvim-cmp" },  -- Required
+			{ "hrsh7th/nvim-cmp" }, -- Required
 			{ "hrsh7th/cmp-nvim-lsp" }, -- Required
 			{
-				"L3MON4D3/LuaSnip",    -- Required
+				"L3MON4D3/LuaSnip", -- Required
 				dependencies = {
 					"rafamadriz/friendly-snippets",
 					"saadparwaiz1/cmp_luasnip",
@@ -112,7 +112,7 @@ return {
 					},
 					python = {
 						analysis = {
-							ignore = { "*" },     -- ignore all files for analysis to only use Ruff for linting
+							ignore = { "*" }, -- ignore all files for analysis to only use Ruff for linting
 							typeCheckingMode = "strict", -- basic / off / strict; off -> usign mypy
 							diagnosticSeverityOverrides = {
 								-- https://github.com/microsoft/pyright/blob/main/docs/configuration.md#type-check-diagnostics-settings
@@ -152,11 +152,9 @@ return {
 					-- vim.keymap.set("n", "<space>wa", vim.lsp.buf.add_workspace_folder,  { buffer = ev.buf, desc = "" })
 					-- vim.keymap.set("n", "<space>wr", vim.lsp.buf.remove_workspace_folder,  { buffer = ev.buf, desc = "" })
 					-- vim.keymap.set("n", "<space>wl", function() print(vim.inspect(vim.lsp.buf.list_workspace_folders())) end,  { buffer = ev.buf, desc = "" })
-					vim.keymap.set("n", "<space>D", vim.lsp.buf.type_definition,
-						{ buffer = ev.buf, desc = "[LSP] Type definition" })
+					vim.keymap.set("n", "<space>D", vim.lsp.buf.type_definition, { buffer = ev.buf, desc = "[LSP] Type definition" })
 					vim.keymap.set("n", "<space>rn", vim.lsp.buf.rename, { buffer = ev.buf, desc = "[LSP] Rename" })
-					vim.keymap.set({ "n", "v" }, "<space>ca", vim.lsp.buf.code_action,
-						{ buffer = ev.buf, desc = "[LSP] Code action" })
+					vim.keymap.set({ "n", "v" }, "<space>ca", vim.lsp.buf.code_action, { buffer = ev.buf, desc = "[LSP] Code action" })
 					vim.keymap.set("n", "gr", vim.lsp.buf.references, { buffer = ev.buf, desc = "[LSP] List references" })
 					-- vim.keymap.set("n", "<space>f", function() vim.lsp.buf.format({ async = true }) end, { buffer = ev.buf, desc = "[LSP] Format buffer" })
 				end,
@@ -178,7 +176,7 @@ return {
 				sources = {
 					{ name = "nvim_lsp" },
 					{ name = "luasnip" },
-					{ name = "buffer",  keyword_length = 5 },
+					{ name = "buffer", keyword_length = 5 },
 					-- { name = "cody" },
 				},
 				mapping = cmp.mapping.preset.insert({

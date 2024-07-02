@@ -1,14 +1,8 @@
 -- lazy plugin loader
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-if not vim.loop.fs_stat(lazypath) then
-	vim.fn.system({
-		"git",
-		"clone",
-		"--filter=blob:none",
-		"https://github.com/folke/lazy.nvim.git",
-		"--branch=stable", -- latest stable release
-		lazypath,
-	})
+if not (vim.uv or vim.loop).fs_stat(lazypath) then
+	local lazyrepo = "https://github.com/folke/lazy.nvim.git"
+	vim.fn.system({ "git", "clone", "--filter=blob:none", "--branch=stable", lazyrepo, lazypath })
 end
 vim.opt.rtp:prepend(lazypath)
 
@@ -16,10 +10,9 @@ vim.opt.rtp:prepend(lazypath)
 local lazy_opts = {
 	install = {
 		missing = true, -- install missing plugins on startup; doesn't increase startup time.
+		-- -- colorscheme that will be used when installing plugins.
 		-- try to load one of these colorschemes when starting an installation during startup
-		-- now set to load below with vim.cmd --
-		-- colorscheme = { "gruvbox" },
-		-- colorscheme = { "kanagawa" },
+		colorscheme = { "tokyonight-storm" },
 	},
 	performance = {
 		cache = {
@@ -32,7 +25,7 @@ local lazy_opts = {
 				"gzip",
 				"matchit",
 				"matchparen",
-				"netrwPlugin",
+				-- "netrwPlugin",
 				"tarPlugin",
 				"tohtml",
 				"tutor",
@@ -110,3 +103,7 @@ vim.keymap.set("t", "<C-k>", "<C-\\><C-n><C-w>k")
 vim.keymap.set("t", "<C-l>", "<C-\\><C-n><C-w>l")
 
 vim.keymap.set("n", "<leader>mr", "<cmd>CellularAutomaton make_it_rain<CR>", { desc = "Make it rain" })
+
+vim.g.neovide_scroll_animation_length = 0.0
+vim.g.neovide_cursor_animate_command_line = false
+vim.g.neovide_cursor_trail_size = 0.1

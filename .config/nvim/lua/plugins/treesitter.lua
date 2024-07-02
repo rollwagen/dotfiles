@@ -22,6 +22,8 @@ return {
 			auto_install = false, -- auto install missing parsers when entering buffer; set to false if no `tree-sitter` CLI installed
 
 			ensure_installed = {
+				"lua",
+				"vimdoc",
 				"bash",
 				"json",
 				"lua",

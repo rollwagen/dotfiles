@@ -14,7 +14,7 @@ return {
 				go = { "golangcilint" },
 				shell = { "shellcheck" },
 				python = { "mypy", "vulture" },
-				-- markdown = { 'vale', }
+				-- markdown = { "vale" },
 			}
 
 			vim.api.nvim_create_autocmd({ "BufWritePost" }, {
@@ -36,6 +36,7 @@ return {
 					-- "golangci-lint",
 					"mypy",
 					"vulture",
+					-- "vale",
 				},
 			})
 		end,
