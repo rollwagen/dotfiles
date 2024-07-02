@@ -1,38 +1,38 @@
 -- lazy plugin loader
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
-	local lazyrepo = "https://github.com/folke/lazy.nvim.git"
-	vim.fn.system({ "git", "clone", "--filter=blob:none", "--branch=stable", lazyrepo, lazypath })
+    local lazyrepo = "https://github.com/folke/lazy.nvim.git"
+    vim.fn.system({ "git", "clone", "--filter=blob:none", "--branch=stable", lazyrepo, lazypath })
 end
 vim.opt.rtp:prepend(lazypath)
 
 -- options for lazy
 local lazy_opts = {
-	install = {
-		missing = true, -- install missing plugins on startup; doesn't increase startup time.
-		-- -- colorscheme that will be used when installing plugins.
-		-- try to load one of these colorschemes when starting an installation during startup
-		colorscheme = { "tokyonight-storm" },
-	},
-	performance = {
-		cache = {
-			enabled = true,
-		},
-		reset_packpath = true, -- reset the package path to improve startup time
-		rtp = {
-			reset = true, -- reset the runtime path to $VIMRUNTIME and your config directory
-			disabled_plugins = {
-				"gzip",
-				"matchit",
-				"matchparen",
-				-- "netrwPlugin",
-				"tarPlugin",
-				"tohtml",
-				"tutor",
-				"zipPlugin",
-			},
-		},
-	},
+    install = {
+        missing = true, -- install missing plugins on startup; doesn't increase startup time.
+        -- -- colorscheme that will be used when installing plugins.
+        -- try to load one of these colorschemes when starting an installation during startup
+        colorscheme = { "tokyonight-storm" },
+    },
+    performance = {
+        cache = {
+            enabled = true,
+        },
+        reset_packpath = true, -- reset the package path to improve startup time
+        rtp = {
+            reset = true, -- reset the runtime path to $VIMRUNTIME and your config directory
+            disabled_plugins = {
+                "gzip",
+                "matchit",
+                "matchparen",
+                -- "netrwPlugin",
+                "tarPlugin",
+                "tohtml",
+                "tutor",
+                "zipPlugin",
+            },
+        },
+    },
 }
 
 -- load lazy plugins in 'plugins/'  require("lazy").setup({ { import = "plugins" } })
@@ -40,7 +40,8 @@ require("lazy").setup("plugins", lazy_opts)
 
 -- coloscheme settings, colorscheme plugins are in colorschema.lua
 vim.opt.background = "dark" -- or "light" for light mode
-vim.cmd([[colorscheme tokyonight-storm]]) -- ...-night, -storm, -day, -moon
+vim.cmd([[colorscheme bamboo]]) -- ...-night, -storm, -day, -moon
+-- vim.cmd([[colorscheme tokyonight-storm]]) -- ...-night, -storm, -day, -moon
 -- vim.cmd([[colorscheme gruvbox]])
 -- vim.cmd([[colorscheme kanagawa]])
 -- vim.cmd([[colorscheme catppuccin-macchiato]]) -- catapuccin catppuccin-latte, catppuccin-frappe, catppuccin-macchiato, catppuccin-mocha

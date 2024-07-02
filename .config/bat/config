@@ -1,2 +1,4 @@
 # Set the theme to "gruvbox-dark"
---theme="gruvbox-dark"
+# --theme="gruvbox-dark"
+# --theme="zenburn"
+--theme="bamboo"

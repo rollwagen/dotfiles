@@ -1,41 +1,121 @@
-[colors]
-draw_bold_text_with_bright_colors = false
 
-[[colors.indexed_colors]]
-color = "0xffa066"
-index = 16
 
-[[colors.indexed_colors]]
-color = "0xff5d62"
-index = 17
-
-[colors.bright]
-black = "0x727169"
-blue = "0x7fb4ca"
-cyan = "0x7aa89f"
-green = "0x98bb6c"
-magenta = "0x938aa9"
-red = "0xe82424"
-white = "0xdcd7ba"
-yellow = "0xe6c384"
-
-[colors.normal]
-black = "0x090618"
-blue = "0x7e9cd8"
-cyan = "0x6a9589"
-green = "0x76946a"
-magenta = "0x957fb8"
-red = "0xc34043"
-white = "0xc8c093"
-yellow = "0xc0a36e"
-
+# Bamboo Alacritty Colors
+# Default colors
 [colors.primary]
-background = "0x1f1f28"
-foreground = "0xdcd7ba"
+background = '0x252623'
+foreground = '0xf1e9d2'
 
-[colors.selection]
-background = "0x2d4f67"
-foreground = "0xc8c093"
+# Normal colors
+[colors.normal]
+black = '0x1c1e1b'
+red = '0xe75a7c'
+green = '0x8fb573'
+yellow = '0xdbb651'
+blue = '0x57a5e5'
+magenta = '0xaaaaff'
+cyan = '0x70c2be'
+white = '0xf1e9d2'
+
+# Bright colors
+[colors.bright]
+black = '0x5b5e5a'
+red = '0xe75a7c'
+green = '0x8fb573'
+yellow = '0xdbb651'
+blue = '0x57a5e5'
+magenta = '0xaaaaff'
+cyan = '0x70c2be'
+white = '0xfff8f0'
+
+
+
+# # TokyoNight Alacritty Colors
+# # Default colors
+# [colors.primary]
+# background = '#24283b'
+# foreground = '#c0caf5'
+#
+# #[colors.cursor]
+# #cursor = '#c0caf5'
+# #text = '#24283b'
+#
+# # Normal colors
+# [colors.normal]
+# black = '#1d202f'
+# red = '#f7768e'
+# green = '#9ece6a'
+# yellow = '#e0af68'
+# blue = '#7aa2f7'
+# magenta = '#bb9af7'
+# cyan = '#7dcfff'
+# white = '#a9b1d6'
+#
+# # Bright colors
+# [colors.bright]
+# black = '#414868'
+# red = '#f7768e'
+# green = '#9ece6a'
+# yellow = '#e0af68'
+# blue = '#7aa2f7'
+# magenta = '#bb9af7'
+# cyan = '#7dcfff'
+# white = '#c0caf5'
+#
+# # Indexed Colors
+# [[colors.indexed_colors]]
+# index = 16
+# color = '#ff9e64'
+#
+# [[colors.indexed_colors]]
+# index = 17
+# color = '#db4b4b'
+
+
+# [colors]
+# draw_bold_text_with_bright_colors = false
+#
+# [[colors.indexed_colors]]
+# color = "0xffa066"
+# index = 16
+#
+# [[colors.indexed_colors]]
+# color = "0xff5d62"
+# index = 17
+#
+# [colors.bright]
+# black = "0x727169"
+# blue = "0x7fb4ca"
+# cyan = "0x7aa89f"
+# green = "0x98bb6c"
+# magenta = "0x938aa9"
+# red = "0xe82424"
+# white = "0xdcd7ba"
+# yellow = "0xe6c384"
+#
+# [colors.normal]
+# black = "0x090618"
+# blue = "0x7e9cd8"
+# cyan = "0x6a9589"
+# green = "0x76946a"
+# magenta = "0x957fb8"
+# red = "0xc34043"
+# white = "0xc8c093"
+# yellow = "0xc0a36e"
+#
+# [colors.primary]
+# background = "0x1f1f28"
+# foreground = "0xdcd7ba"
+#
+# [colors.selection]
+# background = "0x2d4f67"
+# foreground = "0xc8c093"
+
+
+
+
+
+
 
 [font]
 size = 14.0
@@ -56,7 +136,8 @@ history = 10000
 decorations = "buttonless"
 dynamic_padding = true
 dynamic_title = true
-opacity = 0.95
+# opacity = 0.95
+opacity = 0.97
 
 [window.padding]
 x = 0
