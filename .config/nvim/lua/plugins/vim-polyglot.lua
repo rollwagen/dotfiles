@@ -1,5 +1,5 @@
 return {
-	{
-		"sheerun/vim-polyglot",
-	},
+    {
+        "sheerun/vim-polyglot",
+    },
 }

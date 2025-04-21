@@ -4,7 +4,7 @@ return {
 
     {
         "VonHeikemen/lsp-zero.nvim",
-        branch = "v2.x",
+        branch = "v4.x",
         dependencies = {
             -- LSP Support
             { "neovim/nvim-lspconfig" }, -- Required
@@ -36,28 +36,29 @@ return {
             luasnip.config.setup({})
 
             -- lsp
-            local lsp = require("lsp-zero").preset({
+            local lsp = require("lsp-zero")
+            lsp.extend_cmp({
                 manage_nvim_cmp = {
                     set_sources = "recommended",
                 },
+                suggest_lsp_servers = false,
             })
 
             lsp.on_attach(function(_, bufnr) lsp.default_keymaps({ buffer = bufnr }) end)
 
-            lsp.ensure_installed({
-                "lua_ls",
-                "gopls",
-                -- "golangci_lint_ls",
-                -- "pylsp",
-                "pyright",
-                "ruff",
-                "terraformls",
-                "tflint",
-                "taplo", -- for toml (e.g. for pyproject.toml files)
-            })
-
-            lsp.set_preferences({
-                suggest_lsp_servers = false,
+            require("mason").setup({})
+            require("mason-lspconfig").setup({
+                ensure_installed = {
+                    "lua_ls",
+                    "gopls",
+                    -- "golangci_lint_ls",
+                    -- "pylsp",
+                    "pyright",
+                    "ruff",
+                    "terraformls",
+                    "tflint",
+                    "taplo", -- for toml (e.g. for pyproject.toml files)
+                },
             })
 
             -- Configure lua language server for neovim
@@ -134,8 +135,8 @@ return {
 
             -- Global mappings; see `:help vim.diagnostic.*` for doc on any of the below functions
             vim.keymap.set("n", "<space>e", vim.diagnostic.open_float)
-            vim.keymap.set("n", "[d", vim.diagnostic.goto_prev)
-            vim.keymap.set("n", "]d", vim.diagnostic.goto_next)
+            vim.keymap.set("n", "[d", function() vim.diagnostic.jump({ count = 1, float = true }) end)
+            vim.keymap.set("n", "]d", function() vim.diagnostic.jump({ count = -1, float = true }) end)
             vim.keymap.set("n", "<space>q", vim.diagnostic.setloclist)
 
             -- LspAttach autocommand to only map the below keys after the language server attaches to current buffer
@@ -155,19 +156,9 @@ return {
                     -- vim.keymap.set("n", "<space>wa", vim.lsp.buf.add_workspace_folder,  { buffer = ev.buf, desc = "" })
                     -- vim.keymap.set("n", "<space>wr", vim.lsp.buf.remove_workspace_folder,  { buffer = ev.buf, desc = "" })
                     -- vim.keymap.set("n", "<space>wl", function() print(vim.inspect(vim.lsp.buf.list_workspace_folders())) end,  { buffer = ev.buf, desc = "" })
-                    vim.keymap.set(
-                        "n",
-                        "<space>D",
-                        vim.lsp.buf.type_definition,
-                        { buffer = ev.buf, desc = "[LSP] Type definition" }
-                    )
+                    vim.keymap.set("n", "<space>D", vim.lsp.buf.type_definition, { buffer = ev.buf, desc = "[LSP] Type definition" })
                     vim.keymap.set("n", "<space>rn", vim.lsp.buf.rename, { buffer = ev.buf, desc = "[LSP] Rename" })
-                    vim.keymap.set(
-                        { "n", "v" },
-                        "<space>ca",
-                        vim.lsp.buf.code_action,
-                        { buffer = ev.buf, desc = "[LSP] Code action" }
-                    )
+                    vim.keymap.set({ "n", "v" }, "<space>ca", vim.lsp.buf.code_action, { buffer = ev.buf, desc = "[LSP] Code action" })
                     vim.keymap.set("n", "gr", vim.lsp.buf.references, { buffer = ev.buf, desc = "[LSP] List references" })
                     -- vim.keymap.set("n", "<space>f", function() vim.lsp.buf.format({ async = true }) end, { buffer = ev.buf, desc = "[LSP] Format buffer" })
                 end,
@@ -218,6 +209,14 @@ return {
             })
 
             vim.diagnostic.config({
+                -- Use the default configuration
+                -- virtual_lines = true,
+
+                -- Customize specific options
+                virtual_lines = {
+                    current_line = true, -- only show virtual line diag. for current cursor line
+                },
+
                 virtual_text = {
                     prefix = "▎", -- "■", '●', '▎', 'x'
                 },

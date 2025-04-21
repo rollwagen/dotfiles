@@ -25,15 +25,16 @@ return {
         },
 
         -- Set up format-on-save
-        format_on_save = { timeout_ms = 500, lsp_format = "fallback" },
+        format_on_save = { timeout_ms = 2000, lsp_format = "fallback" },
 
         -- Customize formatters
         formatters = {
             black = {
-                prepend_args = { "--line-length", "140" },
+                prepend_args = { "--line-length", "88" },
             },
             stylua = {
                 -- prepend_args = { "--", "--column-width", "140", "--indent_width", "2" },
+                prepend_args = { "--column-width", "140", "--indent-type", "Spaces", "--sort-requires" },
             },
         },
     },

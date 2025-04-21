@@ -39,9 +39,10 @@ local lazy_opts = {
 require("lazy").setup("plugins", lazy_opts)
 
 -- coloscheme settings, colorscheme plugins are in colorschema.lua
-vim.opt.background = "dark" -- or "light" for light mode
-vim.cmd([[colorscheme bamboo]]) -- ...-night, -storm, -day, -moon
--- vim.cmd([[colorscheme tokyonight-storm]]) -- ...-night, -storm, -day, -moon
+-- vim.opt.background = "dark" -- or "light" for light mode
+--
+-- vim.cmd([[colorscheme bamboo]])
+vim.cmd([[colorscheme tokyonight]]) -- ...-night, -storm, -day, -moon
 -- vim.cmd([[colorscheme gruvbox]])
 -- vim.cmd([[colorscheme kanagawa]])
 -- vim.cmd([[colorscheme catppuccin-macchiato]]) -- catapuccin catppuccin-latte, catppuccin-frappe, catppuccin-macchiato, catppuccin-mocha
