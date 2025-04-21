@@ -31,9 +31,9 @@ return {
             -- Module mappings created only inside explorer.
             -- Use `''` (empty string) to not create one.
             mappings = {
-                close = "q",
+                close = "<ESC>",
                 go_in = "l",
-                go_in_plus = "L",
+                go_in_plus = "<cr>",
                 go_out = "h",
                 go_out_plus = "H",
                 mark_goto = "'",
@@ -52,6 +52,8 @@ return {
                 permanent_delete = true,
                 -- Whether to use for editing directories
                 use_as_default_explorer = true,
+                --  close explorer after going inside a fil
+                close_on_file = true,
             },
 
             -- Customization of explorer windows
