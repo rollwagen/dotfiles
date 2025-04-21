@@ -16,24 +16,24 @@ return {
                     end
 
                     -- Navigation
-                    map("n", "]c", function()
-                        if vim.wo.diff then return "]c" end
+                    map("n", "]g", function()
+                        if vim.wo.diff then return "]g" end
                         vim.schedule(function() gs.next_hunk() end)
                         return "<Ignore>"
                     end, { expr = true, desc = "[GS] Next hunk" })
 
-                    map("n", "[c", function()
-                        if vim.wo.diff then return "[c" end
+                    map("n", "[g", function()
+                        if vim.wo.diff then return "[g" end
                         vim.schedule(function() gs.prev_hunk() end)
                         return "<Ignore>"
                     end, { expr = true, desc = "[GS] Prev hunk" })
 
                     -- Actions
-                    map("n", "<leader>hp", gs.preview_hunk, { desc = "[GS] Preview hunk" })
-                    map("n", "<leader>hb", function() gs.blame_line({ full = true }) end)
-                    map("n", "<leader>tb", gs.toggle_current_line_blame)
-                    map("n", "<leader>hd", gs.diffthis)
-                    map("n", "<leader>hD", function() gs.diffthis("~") end)
+                    map("n", "<leader>gp", gs.preview_hunk, { desc = "[GS] Preview hunk" })
+                    map("n", "<leader>gb", function() gs.blame_line({ full = true }) end)
+                    map("n", "<leader>gt", gs.toggle_current_line_blame, { desc = "[GS] Toggle blame" })
+                    map("n", "<leader>gd", gs.diffthis)
+                    map("n", "<leader>gD", function() gs.diffthis("~") end)
                 end,
             })
         end,

@@ -1,3 +1,7 @@
+-- Set <space> as the leader key.
+vim.g.mapleader = " "
+vim.g.maplocalleader = " "
+
 -- lazy plugin loader
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
@@ -47,6 +51,7 @@ vim.cmd([[colorscheme tokyonight]]) -- ...-night, -storm, -day, -moon
 -- vim.cmd([[colorscheme kanagawa]])
 -- vim.cmd([[colorscheme catppuccin-macchiato]]) -- catapuccin catppuccin-latte, catppuccin-frappe, catppuccin-macchiato, catppuccin-mocha
 
+--
 -- :help showtabline
 vim.opt.showtabline = 1
 
@@ -92,17 +97,18 @@ vim.opt.tabstop = 2 -- number of spaces a TAB counts for
 vim.opt.splitright = true
 vim.opt.splitbelow = true
 
--- Ctrl-W Ctrl-W instead (double 'W')
--- vim.keymap.set("", "<C-j>", "<C-W>j")
--- vim.keymap.set("", "<C-k>", "<C-W>k")
--- vim.keymap.set("", "<C-l>", "<C-W>l") -- CTRL-L: Clears and redraws the screen.
--- vim.keymap.set("", "<C-h>", "<C-W>h")
+-- Switch between windows.
+vim.keymap.set("n", "<C-h>", "<C-w>h", { desc = "Move to the left window", remap = true })
+vim.keymap.set("n", "<C-j>", "<C-w>j", { desc = "Move to the bottom window", remap = true })
+vim.keymap.set("n", "<C-k>", "<C-w>k", { desc = "Move to the top window", remap = true })
+vim.keymap.set("n", "<C-l>", "<C-w>l", { desc = "Move to the right window", remap = true }) -- CTRL-L: Clears and redraws the screen.
 
--- switching to move out from terminal
-vim.keymap.set("t", "<C-h>", "<C-\\><C-n><C-w>h")
-vim.keymap.set("t", "<C-j>", "<C-\\><C-n><C-w>j")
-vim.keymap.set("t", "<C-k>", "<C-\\><C-n><C-w>k")
-vim.keymap.set("t", "<C-l>", "<C-\\><C-n><C-w>l")
+-- Poweful <ESC>.
+vim.keymap.set({ "i", "s", "n" }, "<esc>", function()
+    if require("luasnip").expand_or_jumpable() then require("luasnip").unlink_current() end
+    vim.cmd("noh")
+    return "<esc>"
+end, { desc = "Escape, clear hlsearch, and stop snippet session", expr = true })
 
 vim.keymap.set("n", "<leader>mr", "<cmd>CellularAutomaton make_it_rain<CR>", { desc = "Make it rain" })
 
