@@ -52,6 +52,8 @@ else
   export FZF_ALT_C_COMMAND='fd --follow --type d --exclude "Library/" --exclude "Music/"'
 fi
 
+# Ripgrep
+export RIPGREP_CONFIG_PATH="~/.ripgreprc"
 
 # Color adjustments (e.g. dir listing)
 export LSCOLORS=ExFxDxCxegedabagacad
@@ -82,7 +84,7 @@ eval "$(starship init zsh)"
 
 
 # edit command line in $EDITOR with ctrl-x ctrl-e
-export EDITOR=nvim
+export EDITOR="$(which nvim)"
 autoload edit-command-line
 zle -N edit-command-line
 bindkey "^X^E" edit-command-line
@@ -106,6 +108,5 @@ export GREP_OPTIONS="--color=always"
 export HISTCONTROL=ignoreboth
 
 compinit
-
 
 export GPG_TTY=$(tty)

@@ -42,6 +42,9 @@ local lazy_opts = {
 -- load lazy plugins in 'plugins/'  require("lazy").setup({ { import = "plugins" } })
 require("lazy").setup("plugins", lazy_opts)
 
+-- configure lsp servers
+require("lsp")
+
 -- coloscheme settings, colorscheme plugins are in colorschema.lua
 -- vim.opt.background = "dark" -- or "light" for light mode
 --
@@ -103,12 +106,12 @@ vim.keymap.set("n", "<C-j>", "<C-w>j", { desc = "Move to the bottom window", rem
 vim.keymap.set("n", "<C-k>", "<C-w>k", { desc = "Move to the top window", remap = true })
 vim.keymap.set("n", "<C-l>", "<C-w>l", { desc = "Move to the right window", remap = true }) -- CTRL-L: Clears and redraws the screen.
 
--- Poweful <ESC>.
-vim.keymap.set({ "i", "s", "n" }, "<esc>", function()
-    if require("luasnip").expand_or_jumpable() then require("luasnip").unlink_current() end
-    vim.cmd("noh")
-    return "<esc>"
-end, { desc = "Escape, clear hlsearch, and stop snippet session", expr = true })
+-- Poweful <ESC>. TODO
+-- vim.keymap.set({ "i", "s", "n" }, "<esc>", function()
+--     if require("luasnip").expand_or_jumpable() then require("luasnip").unlink_current() end
+--     vim.cmd("noh")
+--     return "<esc>"
+-- end, { desc = "Escape, clear hlsearch, and stop snippet session", expr = true })
 
 vim.keymap.set("n", "<leader>mr", "<cmd>CellularAutomaton make_it_rain<CR>", { desc = "Make it rain" })
 

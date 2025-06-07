@@ -19,9 +19,11 @@
 !.zsh*
 
 # Files to ignore
+.DS_Store
 .idea
 **/*.bak
 **/*.BAK
 *.BAK
 *.bak
 .config/nvim/lazy-lock.json
+tmp/
