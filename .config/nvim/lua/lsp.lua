@@ -1,3 +1,7 @@
+vim.keymap.set("n", "grt", vim.lsp.buf.type_definition, { desc = "[LSP] Go to type definition" })
+vim.keymap.set("n", "gD", vim.lsp.buf.declaration, { desc = "[LSP] Go to declaration" })
+vim.keymap.set("n", "gd", vim.lsp.buf.definition, { desc = "[LSP] Go to definition" })
+
 vim.diagnostic.config({
 
     -- virtual_lines = true,

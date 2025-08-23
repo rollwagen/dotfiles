@@ -16,7 +16,8 @@ local lazy_opts = {
         missing = true, -- install missing plugins on startup; doesn't increase startup time.
         -- -- colorscheme that will be used when installing plugins.
         -- try to load one of these colorschemes when starting an installation during startup
-        colorscheme = { "tokyonight-storm" },
+        -- colorscheme = { "tokyonight-storm" },
+        colorscheme = { "kanagawa-wave" },
     },
     performance = {
         cache = {
@@ -49,8 +50,9 @@ require("lsp")
 -- vim.opt.background = "dark" -- or "light" for light mode
 --
 -- vim.cmd([[colorscheme bamboo]])
-vim.cmd([[colorscheme tokyonight]]) -- ...-night, -storm, -day, -moon
+-- vim.cmd([[colorscheme tokyonight]]) -- ...-night, -storm, -day, -moon
 -- vim.cmd([[colorscheme gruvbox]])
+vim.cmd([[colorscheme kanagawa-wave]])
 -- vim.cmd([[colorscheme kanagawa]])
 -- vim.cmd([[colorscheme catppuccin-macchiato]]) -- catapuccin catppuccin-latte, catppuccin-frappe, catppuccin-macchiato, catppuccin-mocha
 
